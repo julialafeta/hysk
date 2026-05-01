@@ -81,10 +81,11 @@ function Profile({ person, onBack, onPrev, onNext }) {
   const kickerText = (person.role || ed.category || 'Perfil');
   const subtitle = ed.intro || person.blurb || '';
 
-  // Body text — quantidade adequada que balanceia bem nas 3 colunas
+  // Body text — limita em ~250 palavras (somando as 3 colunas)
   const baseText = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean).join(' ');
   let fullText = baseText;
-  while (fullText && fullText.length < 1800) fullText += ' ' + baseText;
+  while (fullText && fullText.split(/\s+/).length < 250) fullText += ' ' + baseText;
+  fullText = fullText.split(/\s+/).slice(0, 250).join(' ');
 
   // Conteúdo da seção 2
   const s2Kicker = ed.category || 'Ensaio';
