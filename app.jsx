@@ -2,7 +2,7 @@ const { useState, useEffect } = React;
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "headline": "INDEX of TASTE",
-  "background": "#F4F0E8",
+  "background": "#FFF4CC",
   "spacing": 132,
   "figureScale": 0.33,
   "showCaptions": false
