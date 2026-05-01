@@ -21,7 +21,7 @@ const HEADLINE_OPTIONS = [
 function renderHeadline(text) {
   return text.split(/(\bof\b)/i).map((part, i) =>
     /^of$/i.test(part)
-      ? <em key={i} style={{ marginLeft: '-0.06em', marginRight: '0.2em' }}>{part}</em>
+      ? <em key={i} style={{ marginLeft: '-0.06em', marginRight: '0.1em' }}>{part}</em>
       : part
   );
 }
