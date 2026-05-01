@@ -100,7 +100,7 @@ function Profile({ person, onBack, onPrev, onNext }) {
               </div>
             </div>
             <div className="ed-columns">
-              {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+              <p>{paragraphs.join(' ')}</p>
             </div>
           </div>
 
