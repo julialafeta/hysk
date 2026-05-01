@@ -98,6 +98,10 @@ function Profile({ person, onBack, onPrev, onNext }) {
   // Quote mais longa: combina pullQuote + why + blurb para preencher melhor a coluna do meio
   const s3QuoteText = [ed.pullQuote, person.why, person.blurb, ed.coda].filter(Boolean).join(' ');
   const s3Quote = `"${s3QuoteText}"`;
+
+  // Conteúdo da seção 4
+  const s4Kicker = 'Moda';
+  const s4Subtitle = `${ed.location ? ed.location + ', ' : ''}${person.role.toLowerCase()} em primeira pessoa.`;
   // Body text dividido para colunas laterais
   const s3FullText = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean).join(' ');
   let s3LongText = s3FullText;
@@ -236,6 +240,33 @@ function Profile({ person, onBack, onPrev, onNext }) {
             <p className="s3-col s3-col--body">{s3RightText}</p>
           </div>
 
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          SEÇÃO 4 — Spread editorial final
+          imagem full-bleed cobrindo toda a seção
+          texto sobreposto na metade direita: kicker + título + subtítulo + créditos
+          ════════════════════════════════════════ */}
+      <section className="s4-section">
+        <div className="s4-photo">
+          <img src={imgFor(`${person.id}-s4hero`, 1800, 1100)} alt="" loading="lazy" />
+        </div>
+
+        <div className="s4-text">
+          <div className="s4-kicker">{s4Kicker}</div>
+          <h2 className="s4-title">{person.name}</h2>
+          <p className="s4-subtitle">{s4Subtitle}</p>
+          <div className="s4-credits">
+            <div className="s4-credits-row">
+              <div className="s4-credits-label">Texto</div>
+              <div className="s4-credits-value">Editorial Hysk</div>
+            </div>
+            <div className="s4-credits-row">
+              <div className="s4-credits-label">Retrato</div>
+              <div className="s4-credits-value">Pablo Saborido</div>
+            </div>
+          </div>
         </div>
       </section>
 

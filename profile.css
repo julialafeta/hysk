@@ -466,6 +466,88 @@
 }
 
 /* ══════════════════════════════════════════════════════
+   SEÇÃO 4 — Imagem full-bleed · texto na metade direita
+   estrutura 50/50 mantida internamente: imagem cobre 100%, texto vive nos 50% direitos
+   ══════════════════════════════════════════════════════ */
+
+.s4-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 10vh;            /* mesmo gap entre as seções anteriores */
+  overflow: hidden;
+}
+
+/* Imagem cobre toda a seção */
+.s4-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.s4-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.03) saturate(0.92);
+}
+
+/* Texto sobreposto, ancorado na metade direita */
+.s4-text {
+  position: absolute;
+  top: 8vh;
+  left: 56%;
+  right: 6vw;
+  color: #1a1a1a;
+}
+
+.s4-kicker {
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin: 0 0 2vh;
+}
+
+.s4-title {
+  font-size: clamp(3rem, 4.2vw, 5rem);
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  max-width: 85%;
+  margin: 0 0 2vh;
+  color: #1a1a1a;
+}
+
+.s4-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.3;
+  font-weight: 600;
+  max-width: 78%;
+  margin: 0 0 3vh;
+}
+
+.s4-credits {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-weight: 500;
+  margin-top: 1vh;
+}
+
+.s4-credits-row {
+  margin-bottom: 1.2vh;
+}
+.s4-credits-row:last-child { margin-bottom: 0; }
+
+.s4-credits-label {
+  font-weight: 700;
+}
+
+.s4-credits-value {
+  font-weight: 400;
+}
+
+/* ══════════════════════════════════════════════════════
    MOBILE — empilha verticalmente
    ══════════════════════════════════════════════════════ */
 @media (max-width: 860px) {
@@ -554,4 +636,17 @@
     row-gap: 3vh;
   }
   .s3-col--quote { font-size: clamp(1.5rem, 6vw, 2.4rem); }
+
+  /* SEÇÃO 4 mobile */
+  .s4-section { margin-top: 6vh; min-height: 80vh; }
+  .s4-text {
+    top: 5vh;
+    left: 6vw;
+    right: 6vw;
+  }
+  .s4-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    max-width: 100%;
+  }
+  .s4-subtitle { max-width: 100%; }
 }
