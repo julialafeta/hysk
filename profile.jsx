@@ -64,6 +64,12 @@ function Profile({ person, onBack, onPrev, onNext }) {
   let fullText = baseText;
   while (fullText && fullText.length < 1800) fullText += ' ' + baseText;
 
+  // Conteúdo da seção 2
+  const s2Kicker = ed.category || 'Ensaio';
+  const s2Intro = (ed.coda || person.blurb || person.why || '').split('. ').slice(0, 2).join('. ').trim() || person.blurb || '';
+  const s2IntroFinal = s2Intro && !s2Intro.endsWith('.') ? s2Intro + '.' : s2Intro;
+  const s2Title = person.name.split(' ').slice(-1)[0];
+
   return (
     <article className="profile">
 
@@ -108,6 +114,48 @@ function Profile({ person, onBack, onPrev, onNext }) {
             <div className="ed-columns">
               <p>{fullText}</p>
             </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          SEÇÃO 2 — Ensaio editorial
+          esquerda: kicker + intro + título centrado + 2 thumbs + créditos
+          direita: imagem full-bleed
+          ════════════════════════════════════════ */}
+      <section className="s2-section">
+        <div className="s2-grid">
+
+          <div className="s2-left">
+            <div className="s2-kicker">{s2Kicker}</div>
+            <p className="s2-intro">{s2IntroFinal}</p>
+
+            <h2 className="s2-title">{s2Title}</h2>
+
+            <div className="s2-thumbs">
+              <div className="s2-thumb">
+                <img src={imgFor(`${person.id}-s2a`, 600, 800)} alt="" loading="lazy" />
+              </div>
+              <div className="s2-thumb">
+                <img src={imgFor(`${person.id}-s2b`, 600, 800)} alt="" loading="lazy" />
+              </div>
+            </div>
+
+            <div className="s2-credits">
+              <div className="s2-credits-row">
+                <div className="s2-credits-label">por</div>
+                <div className="s2-credits-value">Editorial Hysk</div>
+              </div>
+              <div className="s2-credits-row">
+                <div className="s2-credits-label">fotos</div>
+                <div className="s2-credits-value">Pablo Saborido</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="s2-right">
+            <img src={imgFor(`${person.id}-s2hero`, 1400, 1700)} alt="" loading="lazy" />
           </div>
 
         </div>
