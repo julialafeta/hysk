@@ -70,6 +70,21 @@ function Profile({ person, onBack, onPrev, onNext }) {
   const s2IntroFinal = s2Intro && !s2Intro.endsWith('.') ? s2Intro + '.' : s2Intro;
   const s2Title = person.name.split(' ').slice(-1)[0];
 
+  // Conteúdo da seção 3
+  const s3Kicker = 'Moda';
+  const s3Caption = `1, 2, 3 & 4. ${person.name} em estúdio: "${(person.why || person.blurb || '').split('.')[0]}"`;
+  const s3Quote = `"${ed.pullQuote || person.why || person.blurb || ''}"`;
+  // Body text dividido para colunas laterais
+  const s3FullText = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean).join(' ');
+  let s3LongText = s3FullText;
+  while (s3LongText && s3LongText.length < 1500) s3LongText += ' ' + s3FullText;
+  const s3Mid = Math.floor(s3LongText.length / 2);
+  // Quebra na palavra mais próxima do meio
+  let s3SplitAt = s3LongText.lastIndexOf(' ', s3Mid);
+  if (s3SplitAt < 0) s3SplitAt = s3Mid;
+  const s3LeftText = s3LongText.slice(0, s3SplitAt).trim();
+  const s3RightText = s3LongText.slice(s3SplitAt).trim();
+
   return (
     <article className="profile">
 
@@ -156,6 +171,45 @@ function Profile({ person, onBack, onPrev, onNext }) {
 
           <div className="s2-right">
             <img src={imgFor(`${person.id}-s2hero`, 1400, 1700)} alt="" loading="lazy" />
+          </div>
+
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          SEÇÃO 3 — Spread editorial com pull quote
+          esquerda: kicker + imagem grande + pilha de 3 thumbs + legenda
+          direita: 3 colunas (texto · quote bold · texto)
+          ════════════════════════════════════════ */}
+      <section className="s3-section">
+        <div className="s3-grid">
+
+          <div className="s3-left">
+            <div className="s3-kicker">{s3Kicker}</div>
+
+            <div className="s3-main">
+              <img src={imgFor(`${person.id}-s3main`, 700, 940)} alt="" loading="lazy" />
+            </div>
+
+            <div className="s3-stack">
+              <div className="s3-stack-img">
+                <img src={imgFor(`${person.id}-s3a`, 400, 540)} alt="" loading="lazy" />
+              </div>
+              <div className="s3-stack-img">
+                <img src={imgFor(`${person.id}-s3b`, 400, 540)} alt="" loading="lazy" />
+              </div>
+              <div className="s3-stack-img">
+                <img src={imgFor(`${person.id}-s3c`, 400, 540)} alt="" loading="lazy" />
+              </div>
+            </div>
+
+            <div className="s3-caption">{s3Caption}</div>
+          </div>
+
+          <div className="s3-right">
+            <p className="s3-col s3-col--body">{s3LeftText}</p>
+            <p className="s3-col s3-col--quote">{s3Quote}</p>
+            <p className="s3-col s3-col--body">{s3RightText}</p>
           </div>
 
         </div>
