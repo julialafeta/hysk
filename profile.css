@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════════════
-   EDITORIAL PROFILE — Páginas verticais empilhadas
-   Cada bloco = página impressa de altura fixa (100vh)
+   EDITORIAL PROFILE
+   Estrutura mestre: cada página é grid 50/50 ESTRITO
    ══════════════════════════════════════════════════════ */
 
 .profile-shell {
@@ -15,10 +15,20 @@
   overflow-x: hidden;
 }
 
-/* Cada página tem altura fixa de página impressa */
+/* ── PÁGINA: bloco vertical com altura fixa de página impressa ── */
 .page {
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;     /* 50/50 mestre — não muda ── */
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Cada metade ocupa exatamente 50% da largura */
+.half {
+  width: 100%;
+  height: 100%;
   position: relative;
   box-sizing: border-box;
 }
@@ -63,7 +73,7 @@
 }
 .ed-nav__arrows button:hover { opacity: 1; }
 
-/* ── ELEMENTOS COMPARTILHADOS ── */
+/* ── COMPARTILHADOS ── */
 .ed-label {
   font-size: 9px;
   letter-spacing: 0.26em;
@@ -82,53 +92,43 @@
 .ed-credits em { font-style: normal; }
 
 /* ════════════════════════════════════════════════════
-   PÁGINA 1 — Imagem com MOLDURA BRANCA · Texto direita
+   PÁGINA 1 — Imagem (esquerda 50%) | Texto (direita 50%)
    ════════════════════════════════════════════════════ */
-.page-1 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100vh;
-}
 
-/* Lado esquerdo: imagem com margem branca em todos os lados */
+/* Esquerda: imagem com moldura branca, mas DOMINANDO a metade */
+.page-1 .half-left { padding: 48px 24px 48px 48px; }
 .p1-photo {
-  padding: 80px 40px 80px 80px;
-  height: 100%;
-  box-sizing: border-box;
-}
-.p1-photo__inner {
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
-.p1-photo__inner img {
+.p1-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* Lado direito: header topo · espaço · colunas inferior · pgnum base */
+/* Direita: texto contido na metade direita */
+.page-1 .half-right { padding: 48px 48px 48px 24px; }
 .p1-text {
   display: grid;
   grid-template-rows: auto 1fr auto auto;
-  padding: 80px 80px 60px 40px;
   height: 100%;
-  box-sizing: border-box;
+  width: 100%;
 }
 .p1-header { grid-row: 1; }
 .p1-cols { grid-row: 3; }
-.p1-pgnum { grid-row: 4; padding-top: 20px; }
+.p1-pgnum { grid-row: 4; padding-top: 18px; }
 
 .p1-title {
-  font-size: clamp(34px, 4.2vw, 68px);
+  font-size: clamp(28px, 3vw, 56px);
   font-weight: 700;
-  line-height: 1.0;
-  letter-spacing: -0.028em;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   margin: 0 0 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* Permite quebra para títulos longos sem ultrapassar a metade */
+  word-wrap: break-word;
 }
 .p1-dek {
   font-size: 11.5px;
@@ -144,53 +144,41 @@
   line-height: 1.78;
   opacity: 0.6;
 }
-.p1-cols p {
-  margin: 0 0 0.9em;
-  break-inside: avoid;
-}
+.p1-cols p { margin: 0 0 0.9em; break-inside: avoid; }
 
-.p1-pgnum {
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  opacity: 0.28;
-}
+.p1-pgnum { font-size: 9px; letter-spacing: 0.14em; opacity: 0.28; }
 
 /* ════════════════════════════════════════════════════
-   PÁGINA 2 — Meta solta · Mini galeria · Imagem direita SEM moldura
+   PÁGINA 2 — Meta editorial (esquerda 50%) | Visual (direita 50%)
    ════════════════════════════════════════════════════ */
-.page-2 {
-  display: grid;
-  grid-template-columns: 1.1fr 0.7fr 1.4fr;
-  height: 100vh;
-}
 
-/* Coluna esquerda: muito espaço · grid com título no terço inferior */
+.page-2 .half-left { padding: 60px 30px 60px 60px; }
 .p2-meta {
   display: grid;
   grid-template-rows: auto 1fr auto auto;
   row-gap: 20px;
-  padding: 80px 40px 60px 80px;
   height: 100%;
-  box-sizing: border-box;
+  width: 100%;
 }
 .p2-meta-top { grid-row: 1; }
 .p2-meta-title { grid-row: 3; }
-.p2-meta-bot { grid-row: 4; padding-top: 28px; }
+.p2-meta-bot { grid-row: 4; padding-top: 24px; }
 
 .p2-intro {
   font-size: 11.5px;
   line-height: 1.65;
   opacity: 0.62;
   margin: 0;
-  max-width: 280px;
+  max-width: 320px;
 }
 
 .p2-title {
-  font-size: clamp(40px, 5vw, 84px);
+  font-size: clamp(36px, 4.2vw, 76px);
   font-weight: 700;
   line-height: 0.96;
   letter-spacing: -0.03em;
   margin: 0 0 12px;
+  word-wrap: break-word;
 }
 .p2-role {
   font-size: 11px;
@@ -206,12 +194,21 @@
   margin-top: 14px;
 }
 
-/* Coluna central: 3 fotos pequenas empilhadas verticalmente */
+/* Direita: contém miniaturas + imagem grande, ambas dentro do 50% direito */
+.page-2 .half-right {
+  padding: 0;
+}
+.p2-visual {
+  display: grid;
+  grid-template-columns: 0.42fr 1fr;  /* miniaturas | hero */
+  width: 100%;
+  height: 100%;
+}
 .p2-thumbs {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 100px 16px;
+  padding: 60px 12px;
   height: 100%;
   box-sizing: border-box;
   justify-content: center;
@@ -227,9 +224,8 @@
   display: block;
 }
 
-/* Coluna direita: imagem grande, sem moldura branca evidente */
 .p2-hero {
-  padding: 60px 60px 0 0;
+  padding: 50px 50px 0 0;
   height: 100%;
   box-sizing: border-box;
   overflow: hidden;
@@ -242,47 +238,44 @@
 }
 
 /* ════════════════════════════════════════════════════
-   PÁGINA 3 — Cluster de imagens · Texto + pull quote
+   PÁGINA 3 — Cluster de imagens (esquerda 50%) | Texto (direita 50%)
    ════════════════════════════════════════════════════ */
-.page-3 {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  min-height: 100vh;
-}
 
-/* Esquerda: foto grande + coluna de pequenas com algum respiro */
+.page-3 .half-left { padding: 60px 24px 60px 60px; }
 .p3-images {
   display: grid;
   grid-template-columns: 1.7fr 1fr;
   gap: 8px;
-  padding: 70px 0 70px 80px;
-  align-items: start;
   height: 100%;
-  box-sizing: border-box;
+  width: 100%;
+  align-items: start;
 }
-.p3-main { overflow: hidden; }
+.p3-main { overflow: hidden; height: 100%; }
 .p3-main img {
   width: 100%;
-  display: block;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 .p3-stack {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  height: 100%;
 }
-.p3-sm { overflow: hidden; }
+.p3-sm { overflow: hidden; flex: 1; }
 .p3-sm img {
   width: 100%;
-  display: block;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-/* Direita: 2 colunas estreitas + pull quote no fluxo */
+.page-3 .half-right { padding: 60px 60px 60px 36px; }
 .p3-text {
-  padding: 70px 80px 60px 50px;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 .p3-cols {
   column-count: 2;
@@ -290,12 +283,9 @@
   font-size: 10px;
   line-height: 1.78;
   opacity: 0.6;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
-.p3-cols p {
-  margin: 0 0 0.9em;
-  break-inside: avoid;
-}
+.p3-cols p { margin: 0 0 0.9em; break-inside: avoid; }
 
 .pull-quote {
   font-size: clamp(17px, 1.85vw, 25px);
@@ -303,7 +293,7 @@
   line-height: 1.3;
   letter-spacing: -0.018em;
   color: #1a1a1a;
-  margin: 6px 0 32px;
+  margin: 6px 0 28px;
   padding: 0;
   border: 0;
 }
@@ -317,14 +307,14 @@
 }
 
 /* ════════════════════════════════════════════════════
-   PÁGINA 4 — IMAGEM FULL-BLEED · texto sobreposto
+   PÁGINA 4 — Imagem FULL-BLEED · texto na metade direita
    ════════════════════════════════════════════════════ */
 .page-4 {
+  display: block;          /* sobrescreve grid 1fr 1fr da .page */
   position: relative;
   height: 100vh;
   overflow: hidden;
 }
-
 .p4-photo {
   position: absolute;
   inset: 0;
@@ -338,23 +328,29 @@
   object-fit: cover;
   display: block;
 }
-
-/* gradiente sutil no topo para legibilidade do texto */
 .p4-photo::after {
   content: "";
   position: absolute;
-  inset: 0 0 auto 0;
-  height: 55%;
-  background: linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.12) 60%, transparent 100%);
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 50%, transparent 75%);
   pointer-events: none;
 }
 
-.p4-text {
+/* Grid overlay 50/50 — texto vive APENAS na metade direita */
+.p4-grid {
   position: absolute;
-  top: 80px;
-  left: 32%;
-  right: 8vw;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   z-index: 2;
+}
+.p4-left { /* metade esquerda vazia, parte da imagem */ }
+.p4-right {
+  padding: 80px 60px 80px 40px;
+}
+
+.p4-text {
+  width: 100%;
   color: #fff;
 }
 
@@ -365,12 +361,13 @@
 }
 
 .p4-title {
-  font-size: clamp(48px, 6.5vw, 104px);
+  font-size: clamp(40px, 5vw, 84px);
   font-weight: 700;
   line-height: 0.96;
-  letter-spacing: -0.032em;
+  letter-spacing: -0.03em;
   margin: 0 0 18px;
   color: #fff;
+  word-wrap: break-word;
 }
 
 .p4-sub {
@@ -378,7 +375,6 @@
   line-height: 1.55;
   color: rgba(255, 255, 255, 0.85);
   margin: 0 0 22px;
-  max-width: 480px;
 }
 
 .p4-credits {
@@ -429,94 +425,72 @@
 .profile img { filter: contrast(1.03) saturate(0.92); }
 
 /* ════════════════════════════════════════════════════
-   TABLET
+   TABLET — preserva 50/50 mas reduz margens
    ════════════════════════════════════════════════════ */
 @media (max-width: 1100px) {
-  .p1-photo { padding: 60px 30px 60px 60px; }
-  .p1-text { padding: 60px 60px 48px 30px; }
-  .p1-title { font-size: clamp(28px, 4vw, 52px); }
+  .page-1 .half-left { padding: 36px 18px 36px 36px; }
+  .page-1 .half-right { padding: 36px 36px 36px 18px; }
 
-  .page-2 { grid-template-columns: 1fr 0.7fr 1.3fr; }
-  .p2-meta { padding: 60px 30px 48px 60px; }
-  .p2-hero { padding: 48px 48px 0 0; }
-  .p2-thumbs { padding: 80px 12px; }
+  .page-2 .half-left { padding: 48px 24px 48px 48px; }
+  .p2-hero { padding: 40px 40px 0 0; }
+  .p2-thumbs { padding: 48px 10px; }
 
-  .p3-images { padding: 60px 0 60px 60px; }
-  .p3-text { padding: 60px 60px 48px 40px; }
+  .page-3 .half-left { padding: 48px 18px 48px 48px; }
+  .page-3 .half-right { padding: 48px 48px 48px 28px; }
 
-  .p4-text { left: 28%; right: 6vw; }
+  .p4-right { padding: 60px 48px 60px 32px; }
 }
 
 /* ════════════════════════════════════════════════════
-   MOBILE
+   MOBILE — empilha verticalmente (50/50 deixa de ser horizontal)
    ════════════════════════════════════════════════════ */
 @media (max-width: 860px) {
-  .page { min-height: auto; height: auto; }
+  .page {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .half { height: auto; }
 
   /* PÁGINA 1 */
-  .page-1 {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-  .p1-photo {
-    padding: 32px 24px 16px;
-    aspect-ratio: 4/5;
-    height: auto;
-  }
-  .p1-text {
-    grid-template-rows: none;
-    display: flex;
-    flex-direction: column;
-    padding: 24px 24px 40px;
-    height: auto;
-  }
-  .p1-title { white-space: normal; font-size: clamp(28px, 7vw, 48px); }
+  .page-1 .half-left { padding: 28px 24px 14px; }
+  .p1-photo { aspect-ratio: 4/5; }
+  .page-1 .half-right { padding: 24px 24px 40px; }
+  .p1-text { display: flex; flex-direction: column; }
   .p1-cols { column-count: 2; margin-top: 32px; }
   .p1-pgnum { padding-top: 24px; }
 
   /* PÁGINA 2 */
-  .page-2 {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-  .p2-meta {
-    grid-template-rows: auto auto auto;
-    padding: 40px 24px 24px;
-    height: auto;
-  }
+  .page-2 .half-left { padding: 40px 24px 24px; }
+  .p2-meta { display: flex; flex-direction: column; gap: 20px; }
   .p2-meta-top, .p2-meta-title, .p2-meta-bot { grid-row: auto; }
   .p2-meta-bot { padding-top: 16px; }
+  .p2-visual {
+    grid-template-columns: 1fr;
+  }
   .p2-thumbs {
     flex-direction: row;
     padding: 16px 24px;
     height: 200px;
+    justify-content: stretch;
   }
   .p2-thumb { flex: 1; }
   .p2-hero {
-    padding: 16px 0 0 0;
+    padding: 16px 24px 0 24px;
     aspect-ratio: 4/5;
     height: auto;
   }
 
   /* PÁGINA 3 */
-  .page-3 {
-    grid-template-columns: 1fr;
-  }
-  .p3-images {
-    padding: 32px 24px;
-    height: auto;
-  }
-  .p3-text {
-    padding: 0 24px 40px;
-  }
+  .page-3 .half-left { padding: 32px 24px; }
+  .p3-images { height: auto; }
+  .page-3 .half-right { padding: 0 24px 40px; }
   .p3-cols { column-count: 1; }
 
   /* PÁGINA 4 */
   .page-4 { height: 90vh; }
-  .p4-text {
-    top: 48px;
-    left: 24px;
-    right: 24px;
+  .p4-grid { grid-template-columns: 1fr; }
+  .p4-right {
+    padding: 48px 24px 24px;
   }
   .p4-title { font-size: clamp(36px, 9vw, 64px); }
 
@@ -532,6 +506,6 @@
 @media (max-width: 480px) {
   .p1-cols { column-count: 1; }
   .p3-images { grid-template-columns: 1fr; }
-  .p3-stack { flex-direction: row; flex-wrap: wrap; }
+  .p3-stack { flex-direction: row; flex-wrap: wrap; height: auto; }
   .p3-sm { flex: 1; min-width: 100px; }
 }
