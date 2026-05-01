@@ -102,13 +102,7 @@ html, body {
   height: 105px;
   padding: 5px;                         /* perforated colored band */
   box-sizing: border-box;
-  /* Gold gradient with XP-Luna-style shine: bright top → mid → darker bottom */
-  background: linear-gradient(180deg,
-    #E5C24C 0%,
-    #D4A933 22%,
-    #C19420 50%,
-    #A07A14 78%,
-    #82640F 100%);
+  background: #B8860B;                  /* solid gold — Win98-style flat color */
   overflow: hidden;
   opacity: 0;
   transition: opacity 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -128,14 +122,19 @@ html, body {
   mask-repeat: no-repeat;
 }
 
-/* Inner area: cream paper with thin deep accent line (vintage philately detail) */
+/* Inner area: cream paper with Win98-style sunken bevel (dark top-left, light bottom-right) */
 .figure-preview__frame {
   width: 100%;
   height: 100%;
-  background: #F4EFE3;                  /* soft cream — looks aged/premium */
+  background: #F4EFE3;                  /* soft cream */
   overflow: hidden;
   box-sizing: border-box;
-  box-shadow: inset 0 0 0 1px rgba(82, 60, 12, 0.9);    /* deep bronze accent line — contrasts with gold band */
+  /* Two-pixel Win98 inset bevel — gives the cream area a recessed-window look */
+  box-shadow:
+    inset 1px 1px 0 #4A3712,            /* outer dark line (top + left) */
+    inset 2px 2px 0 #8A6B1F,            /* inner mid-gold line */
+    inset -1px -1px 0 #FFF7E2,          /* outer light line (right + bottom) */
+    inset -2px -2px 0 #E8C97A;          /* inner soft-gold light */
 }
 
 .figure-preview__inner {
