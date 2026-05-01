@@ -77,8 +77,8 @@
 /* ── METADE ESQUERDA 50% — imagem com moldura branca ── */
 
 .ed-left {
-  padding: 0.6vh 0.4vw;   /* moldura branca bem fina dentro dos 50vw */
-  display: flex;          /* permite imagem esticar em altura */
+  padding: 2vw;            /* moldura branca uniforme nos 4 lados */
+  display: flex;           /* permite imagem esticar em altura */
 }
 
 .ed-image {
@@ -99,7 +99,9 @@
 /* ── METADE DIREITA 50% — composição editorial vertical ── */
 
 .ed-right {
-  padding: 4vh 4.5vw 2vh 3vw;   /* padding interno para respiro do texto */
+  padding: 4vh 4.5vw 2vw 3vw;   /* bottom = 2vw para alinhar com base da imagem */
+  display: flex;
+  flex-direction: column;
 }
 
 /* Zona 1 — kicker pequeno discreto no topo */
@@ -161,12 +163,14 @@
   font-weight: 500;
 }
 
-/* Zona 3 — 3 colunas, fluxo contínuo, larguras balanceadas, bottoms alinhados */
+/* Zona 3 — 3 colunas, fluxo contínuo, ocupa altura restante, bottoms alinham com a imagem */
 .ed-columns {
+  flex: 1;                /* preenche toda a altura restante do .ed-right */
   width: 100%;
   column-count: 3;
   column-gap: 1.6vw;
-  column-fill: balance;
+  column-fill: auto;      /* enche cada coluna até o final antes de passar pra próxima */
+  overflow: hidden;
 }
 
 .ed-columns p {
