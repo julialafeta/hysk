@@ -60,16 +60,12 @@
 
 .ed-section {
   width: 100%;
-  min-height: 100vh;
   padding: 0;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
 }
 
-/* Grid 50/50 ESTRITO — flex: 1 faz preencher a seção */
+/* Grid 50/50 ESTRITO — altura determinada pelo conteúdo direito (imagem é absoluta, não interfere) */
 .ed-grid {
-  flex: 1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   column-gap: 0;
@@ -80,13 +76,12 @@
 
 .ed-left {
   padding: 2vw;            /* moldura branca uniforme nos 4 lados */
-  display: flex;           /* permite imagem esticar em altura */
+  position: relative;      /* container para imagem absoluta */
 }
 
 .ed-image {
-  width: 100%;
-  max-width: 100%;
-  flex: 1;                /* preenche toda a altura disponível da metade esquerda */
+  position: absolute;     /* não interfere na altura natural da célula */
+  inset: 2vw;             /* preenche o .ed-left descontando a moldura branca */
   overflow: hidden;
 }
 
@@ -165,15 +160,12 @@
   font-weight: 500;
 }
 
-/* Zona 3 — 3 colunas que preenchem toda a altura disponível até a base da imagem */
+/* Zona 3 — 3 colunas balanceadas (cross-browser) */
 .ed-columns {
-  flex: 1;                /* preenche a altura restante do .ed-right */
-  min-height: 0;          /* permite shrink em flex */
   width: 100%;
   column-count: 3;
   column-gap: 1.6vw;
-  column-fill: auto;      /* enche cada coluna até a base antes de passar para a próxima */
-  overflow: hidden;       /* corta excesso de texto se houver */
+  column-fill: balance;   /* distribui o texto igualmente nas 3 colunas em todos os browsers */
 }
 
 .ed-columns p {

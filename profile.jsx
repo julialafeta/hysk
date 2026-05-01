@@ -8,7 +8,6 @@ function Profile({ person, onBack, onPrev, onNext }) {
   const ed = (window.EDITORIAL && window.EDITORIAL[person.id]) || window.EDITORIAL_DEFAULT(person);
   const titleRef = useRef(null);
   const rightRef = useRef(null);
-  const columnsRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -38,32 +37,6 @@ function Profile({ person, onBack, onPrev, onNext }) {
     return () => { ro.disconnect(); window.removeEventListener('resize', fit); };
   }, [person.id]);
 
-  // Fix cross-browser: seta altura explícita do .ed-columns para que o column-fill: auto funcione no Chrome
-  useEffect(() => {
-    const fitCols = () => {
-      const r = rightRef.current;
-      const c = columnsRef.current;
-      if (!r || !c) return;
-      const rs = getComputedStyle(r);
-      const padTop = parseFloat(rs.paddingTop);
-      const padBot = parseFloat(rs.paddingBottom);
-      let siblingsH = 0;
-      let s = c.previousElementSibling;
-      while (s) { siblingsH += s.offsetHeight; s = s.previousElementSibling; }
-      const h = r.clientHeight - padTop - padBot - siblingsH;
-      if (h > 0) c.style.height = h + 'px';
-    };
-    // roda múltiplas vezes pra capturar layout final (após auto-fit do título e fontes carregadas)
-    fitCols();
-    requestAnimationFrame(fitCols);
-    setTimeout(fitCols, 100);
-    setTimeout(fitCols, 500);
-    const ro = new ResizeObserver(fitCols);
-    if (rightRef.current) ro.observe(rightRef.current);
-    window.addEventListener('resize', fitCols);
-    return () => { ro.disconnect(); window.removeEventListener('resize', fitCols); };
-  }, [person.id]);
-
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') onBack();
@@ -78,10 +51,10 @@ function Profile({ person, onBack, onPrev, onNext }) {
   const kickerText = (person.role || ed.category || 'Perfil');
   const subtitle = ed.intro || person.blurb || '';
 
-  // Body text — gera texto suficiente para preencher as 3 colunas até a base da imagem
+  // Body text — quantidade adequada que balanceia bem nas 3 colunas
   const baseText = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean).join(' ');
   let fullText = baseText;
-  while (fullText && fullText.length < 4000) fullText += ' ' + baseText;
+  while (fullText && fullText.length < 1800) fullText += ' ' + baseText;
 
   return (
     <article className="profile">
@@ -124,7 +97,7 @@ function Profile({ person, onBack, onPrev, onNext }) {
                 <div className="ed-meta-value">Vol. 04 · Primavera 2026</div>
               </div>
             </div>
-            <div className="ed-columns" ref={columnsRef}>
+            <div className="ed-columns">
               <p>{fullText}</p>
             </div>
           </div>
