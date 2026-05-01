@@ -5,11 +5,11 @@
 
 .profile-shell {
   min-height: 100vh;
-  background: #FAFAF7;
+  background: #FFF4CC;
 }
 
 .profile {
-  background: #FAFAF7;
+  background: #FFF4CC;
   color: #1a1a1a;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   overflow-x: hidden;
@@ -32,7 +32,7 @@
   text-transform: uppercase;
   color: #1a1a1a;
   opacity: 0.45;
-  cursor: pointer;
+  cursor: url('cursor-hand.svg') 6 1, pointer;
 }
 .ed-nav__back:hover { opacity: 1; }
 
@@ -50,7 +50,7 @@
   font-size: 13px;
   color: #1a1a1a;
   opacity: 0.3;
-  cursor: pointer;
+  cursor: url('cursor-hand.svg') 6 1, pointer;
 }
 .ed-nav__arrows button:hover { opacity: 1; }
 
@@ -198,7 +198,7 @@
   text-transform: uppercase;
   color: #1a1a1a;
   opacity: 0.4;
-  cursor: pointer;
+  cursor: url('cursor-hand.svg') 6 1, pointer;
 }
 .ed-footer button:hover { opacity: 1; }
 
@@ -221,7 +221,7 @@
 .s3-section {
   width: 100%;
   min-height: 100vh;
-  background: #FAFAF7;
+  background: #FFF4CC;
   padding: 0;
   margin-top: 10vh;            /* editorial breathing room between sections */
   box-sizing: border-box;
@@ -351,7 +351,7 @@
 .s2-section {
   width: 100%;
   min-height: 100vh;
-  background: #FAFAF7;
+  background: #FFF4CC;
   padding: 0;
   margin-top: 10vh;            /* mesmo gap usado entre seção 1 e 2 */
   box-sizing: border-box;
