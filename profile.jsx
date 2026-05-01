@@ -10,7 +10,7 @@ function useReveal() {
     if (rect.top < window.innerHeight) { setShown(true); return; }
     const io = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) { setShown(true); io.disconnect(); }
-    }, { threshold: 0.06 });
+    }, { threshold: 0.05 });
     io.observe(node);
     return () => io.disconnect();
   }, []);
@@ -51,105 +51,165 @@ function Profile({ person, onBack, onPrev, onNext }) {
   const s = person.id;
   const titleText = Array.isArray(ed.title) ? ed.title.join(' ') : (ed.title || person.name);
   const category = ed.category || 'Perfil';
-  const location = ed.location || '';
+  const vol = 'Vol. 04';
+
+  // Build enough text for columns — combine all available content
+  const allParts = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean);
+  // Ensure we have at least 3 paragraphs for the columns
+  const colParts = allParts.length >= 3
+    ? allParts
+    : [...allParts, ...allParts].slice(0, 4);
 
   return (
     <article className="profile">
 
       <nav className="ed-nav">
         <button className="ed-nav__back" onClick={onBack}>← Índice</button>
-        <span className="ed-nav__wordmark">Hysk · Vol. 04</span>
+        <span className="ed-nav__wordmark">Hysk · {vol}</span>
         <div className="ed-nav__arrows">
           <button onClick={onPrev}>←</button>
           <button onClick={onNext}>→</button>
         </div>
       </nav>
 
-      {/* 1 — Abertura: imagem vertical + título + texto em colunas */}
-      <section className="spread-open">
-        <Reveal className="spread-open__img">
-          <img src={imgFor(`${s}-open`, 800, 1100)} alt="" loading="eager" />
-        </Reveal>
-        <Reveal className="spread-open__text" delay={100}>
-          <div className="ed-label">{category}{location ? ` · ${location}` : ''}</div>
-          <h1 className="open-title">{titleText}</h1>
-          <p className="open-dek">{person.role}</p>
-          <div className="ed-credits">
-            <div>Texto <em>Editorial</em></div>
-            <div>Fotos <em>Arquivo</em></div>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          DUPLA 1
+          Página esquerda: foto full-bleed
+          Página direita: label + título (1 linha) + créditos + 3 colunas
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="spread-1">
+
+        <div className="s1-photo">
+          <img src={imgFor(`${s}-open`, 900, 1200)} alt="" loading="eager" />
+        </div>
+
+        <Reveal className="s1-text" delay={80}>
+          <div className="s1-header">
+            <div className="ed-label">{category} · {vol}</div>
+            <h1 className="s1-title">{titleText}</h1>
+            <p className="s1-dek">{person.role}</p>
+            <div className="ed-credits">
+              <div>Texto <em>Editorial Hysk</em></div>
+              <div>Fotos <em>Arquivo Pessoal</em></div>
+              <div>Edição <em>Primavera 2026</em></div>
+            </div>
           </div>
-          <div className="body-cols"><p>{ed.intro}</p></div>
-          <div className="pg-num">— 01</div>
+          <div className="s1-footer">
+            <div className="s1-cols">
+              {colParts.map((p, i) => <p key={i}>{p}</p>)}
+            </div>
+            <div className="pg-num">— 01</div>
+          </div>
         </Reveal>
+
       </section>
 
-      {/* 2 — Feature: meta estreito + galeria de miniaturas + imagem grande */}
-      <section className="spread-feature">
-        <Reveal className="feature-meta">
-          <div className="ed-label">Perfil</div>
-          <h2 className="feature-title">{person.blurb}</h2>
-          <div className="ed-credits">
-            <div>Por <em>Hysk</em></div>
-            <div>Fotos <em>Arquivo Pessoal</em></div>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          DUPLA 2
+          Coluna esquerda (estreita): label + título grande + créditos + número
+          Centro: 3 fotos empilhadas
+          Direita: 1 foto editorial grande
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="spread-2">
+
+        <Reveal className="s2-meta">
+          <div className="s2-meta-top">
+            <div className="ed-label">{category}</div>
+            <h2 className="s2-title">{person.name}</h2>
+            <p className="s2-role">{person.role}</p>
           </div>
-          <div className="pg-num">— 02</div>
+          <div className="s2-meta-bottom">
+            <div className="ed-credits">
+              <div>Por <em>Hysk</em></div>
+              <div>Fotos <em>Arquivo</em></div>
+            </div>
+            <div className="pg-num">— 02 · Ensaio</div>
+          </div>
         </Reveal>
-        <div className="feature-thumbs">
-          <Reveal className="ft-img">
-            <img src={imgFor(`${s}-t1`, 360, 460)} alt="" loading="lazy" />
+
+        <div className="s2-thumbs">
+          <Reveal className="s2-thumb">
+            <img src={imgFor(`${s}-t1`, 420, 540)} alt="" loading="lazy" />
           </Reveal>
-          <Reveal className="ft-img" delay={80}>
-            <img src={imgFor(`${s}-t2`, 360, 260)} alt="" loading="lazy" />
+          <Reveal className="s2-thumb" delay={70}>
+            <img src={imgFor(`${s}-t2`, 420, 320)} alt="" loading="lazy" />
           </Reveal>
-          <Reveal className="ft-img" delay={160}>
-            <img src={imgFor(`${s}-t3`, 360, 320)} alt="" loading="lazy" />
+          <Reveal className="s2-thumb" delay={140}>
+            <img src={imgFor(`${s}-t3`, 420, 380)} alt="" loading="lazy" />
           </Reveal>
         </div>
-        <Reveal className="feature-main">
-          <img src={imgFor(`${s}-feat`, 720, 960)} alt="" loading="lazy" />
+
+        <Reveal className="s2-hero">
+          <img src={imgFor(`${s}-feat`, 820, 1100)} alt="" loading="lazy" />
         </Reveal>
+
       </section>
 
-      {/* 3 — Editorial: cluster de imagens + colunas de texto + pull quote */}
-      <section className="spread-editorial">
-        <div className="editorial-images">
-          <Reveal className="ed-img-main">
-            <img src={imgFor(`${s}-ed1`, 520, 720)} alt="" loading="lazy" />
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          DUPLA 3
+          Esquerda: foto grande + 3 fotos pequenas empilhadas
+          Direita: label + 2 colunas texto + pull quote + mais texto
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="spread-3">
+
+        <div className="s3-images">
+          <Reveal className="s3-main">
+            <img src={imgFor(`${s}-ed1`, 560, 760)} alt="" loading="lazy" />
           </Reveal>
-          <div className="ed-img-stack">
-            <Reveal className="ft-img">
-              <img src={imgFor(`${s}-ed2`, 260, 200)} alt="" loading="lazy" />
+          <div className="s3-stack">
+            <Reveal className="s3-sm">
+              <img src={imgFor(`${s}-ed2`, 280, 220)} alt="" loading="lazy" />
             </Reveal>
-            <Reveal className="ft-img" delay={80}>
-              <img src={imgFor(`${s}-ed3`, 260, 280)} alt="" loading="lazy" />
+            <Reveal className="s3-sm" delay={70}>
+              <img src={imgFor(`${s}-ed3`, 280, 300)} alt="" loading="lazy" />
             </Reveal>
-            <Reveal className="ft-img" delay={160}>
-              <img src={imgFor(`${s}-ed4`, 260, 220)} alt="" loading="lazy" />
+            <Reveal className="s3-sm" delay={140}>
+              <img src={imgFor(`${s}-ed4`, 280, 240)} alt="" loading="lazy" />
             </Reveal>
           </div>
         </div>
-        <Reveal className="editorial-body" delay={80}>
-          <p className="body-text">{ed.intro}</p>
+
+        <Reveal className="s3-text" delay={80}>
+          <div className="ed-label">{category}</div>
+          <div className="s3-cols">
+            {colParts.slice(0, 2).map((p, i) => <p key={i}>{p}</p>)}
+          </div>
           <blockquote className="pull-quote">"{ed.pullQuote}"</blockquote>
-          <p className="body-text">{ed.coda}</p>
+          <div className="s3-cols">
+            {colParts.slice(2).map((p, i) => <p key={i}>{p}</p>)}
+          </div>
           <div className="pg-num">— 03</div>
         </Reveal>
+
       </section>
 
-      {/* 4 — Fechamento: imagem larga + nome grande */}
-      <section className="spread-close">
-        <Reveal className="close-img">
-          <img src={imgFor(`${s}-close`, 1400, 760)} alt="" loading="lazy" />
-        </Reveal>
-        <Reveal className="close-text" delay={120}>
-          <div className="ed-label">Perfil · Hysk Vol. 04</div>
-          <h2 className="close-title">{person.name}</h2>
-          <p className="close-sub">{person.role}</p>
-          <div className="ed-credits" style={{ marginTop: '20px' }}>
-            <div>Fotos <em>Arquivo Pessoal</em></div>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          DUPLA 4 — Fechamento
+          Página esquerda: foto ambiente/atelier
+          Página direita: nome em display grande + cargo + créditos
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="spread-4">
+
+        <div className="s4-photo">
+          <img src={imgFor(`${s}-close`, 820, 1100)} alt="" loading="lazy" />
+        </div>
+
+        <Reveal className="s4-text" delay={120}>
+          <div className="s4-text-top">
+            <div className="ed-label">Perfil · {category}</div>
+            <h2 className="s4-title">{person.name}</h2>
+            <p className="s4-sub">{person.role}</p>
+            <p className="s4-blurb">{person.blurb}</p>
           </div>
-          <div className="pg-num">— 04</div>
+          <div className="s4-text-bottom">
+            <div className="ed-credits">
+              <div>Fotos <em>Arquivo Pessoal</em></div>
+              <div>Edição <em>Hysk · {vol}</em></div>
+            </div>
+            <div className="pg-num">— 04</div>
+          </div>
         </Reveal>
+
       </section>
 
       <footer className="ed-footer">
