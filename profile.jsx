@@ -98,9 +98,11 @@ function Profile({ person, onBack, onPrev, onNext }) {
   // Conteúdo da seção 3
   const s3Kicker = 'Moda';
   const s3Caption = `1, 2, 3 & 4. ${person.name} em estúdio: "${(person.why || person.blurb || '').split('.')[0]}"`;
-  // Quote mais longa: combina pullQuote + why + blurb para preencher melhor a coluna do meio
-  const s3QuoteText = [ed.pullQuote, person.why, person.blurb, ed.coda].filter(Boolean).join(' ');
-  const s3Quote = `"${s3QuoteText}"`;
+  // Quote: combina pullQuote + why + blurb + coda e reduz para ~50% das palavras
+  const s3QuoteFull = [ed.pullQuote, person.why, person.blurb, ed.coda].filter(Boolean).join(' ');
+  const s3QuoteWords = s3QuoteFull.split(/\s+/);
+  const s3QuoteHalf = s3QuoteWords.slice(0, Math.ceil(s3QuoteWords.length / 2)).join(' ');
+  const s3Quote = `"${s3QuoteHalf}"`;
 
   // Conteúdo da seção 4
   const s4Kicker = 'Moda';
