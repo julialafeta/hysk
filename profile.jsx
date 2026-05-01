@@ -246,15 +246,17 @@ function Profile({ person, onBack, onPrev, onNext }) {
       {/* ════════════════════════════════════════
           SEÇÃO 4 — Spread editorial final
           imagem full-bleed cobrindo toda a seção
-          texto sobreposto na metade direita: kicker + título + subtítulo + créditos
+          kicker no canto superior esquerdo (alinhado com s2/s3)
+          texto sobreposto na metade direita: título + subtítulo + créditos
           ════════════════════════════════════════ */}
       <section className="s4-section">
         <div className="s4-photo">
           <img src={imgFor(`${person.id}-s4hero`, 1800, 1100)} alt="" loading="lazy" />
         </div>
 
+        <div className="s4-kicker">{s4Kicker}</div>
+
         <div className="s4-text">
-          <div className="s4-kicker">{s4Kicker}</div>
           <h2 className="s4-title">{person.name}</h2>
           <p className="s4-subtitle">{s4Subtitle}</p>
           <div className="s4-credits">
