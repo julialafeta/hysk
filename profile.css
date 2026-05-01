@@ -377,11 +377,16 @@
   box-sizing: border-box;
 }
 
+/* Kicker absolute, alinhado com o topo do primeiro thumb da stack (top: 4.5vh) */
 .s2-kicker {
+  position: absolute;
+  top: 4.5vh;
+  left: 2vw;
   font-size: 0.72rem;
   font-weight: 600;
-  margin: 0 0 2.5vh;
+  margin: 0;
   color: #1a1a1a;
+  line-height: 1;
 }
 
 /* Imagem grande dominante na esquerda */
