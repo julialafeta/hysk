@@ -51,9 +51,9 @@ function Profile({ person, onBack, onPrev, onNext }) {
   const kickerText = (person.role || ed.category || 'Perfil');
   const subtitle = ed.intro || person.blurb || '';
 
-  // Body text — gera muito conteúdo pra preencher as 3 colunas até a base da imagem
+  // Body text — quantidade moderada que preenche as 3 colunas naturalmente
   const baseText = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean).join(' ');
-  const fullText = baseText ? (baseText + ' ').repeat(10).trim() : '';
+  const fullText = baseText ? (baseText + ' ' + baseText) : '';
 
   return (
     <article className="profile">
