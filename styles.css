@@ -122,11 +122,11 @@ html, body {
   mask-repeat: no-repeat;
 }
 
-/* Inner area: cream paper with Win98-style sunken bevel (dark top-left, light bottom-right) */
+/* Inner area: aged-paper yellow with Win98-style sunken bevel (kept unchanged) */
 .figure-preview__frame {
   width: 100%;
   height: 100%;
-  background: #F4EFE3;                  /* soft cream */
+  background: #EFE0A8;                  /* aged yellowish paper */
   overflow: hidden;
   box-sizing: border-box;
   /* Two-pixel Win98 inset bevel — gives the cream area a recessed-window look */
