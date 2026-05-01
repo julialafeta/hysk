@@ -76,13 +76,13 @@
 /* ── METADE ESQUERDA 50% — imagem com moldura branca ── */
 
 .ed-left {
-  padding: 4vh 2.25vw 3vh 2vw;
+  padding: 2vh 1vw;
 }
 
 .ed-image {
-  width: 80%;
-  max-width: 82%;
-  margin: 0 auto;        /* centraliza opticamente dentro da metade */
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
   aspect-ratio: 3 / 4;   /* portrait — fiel à referência */
   overflow: hidden;
 }
