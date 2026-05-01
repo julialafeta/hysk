@@ -61,15 +61,15 @@
 .ed-section {
   width: 100%;
   min-height: 100vh;
-  padding: 7vh 4.5vw;
+  padding: 7vh 0;          /* sem padding horizontal: cada coluna do grid = 50vw exatos */
   box-sizing: border-box;
 }
 
-/* Grid 50/50 estrito — mesma largura nos dois lados; itens esticam em altura */
+/* Grid 50/50 estrito — cada metade ocupa exatamente 50vw */
 .ed-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 3.5vw;
+  column-gap: 0;
   align-items: stretch;
   min-height: calc(100vh - 14vh);
 }
@@ -77,7 +77,7 @@
 /* ── METADE ESQUERDA 50% — imagem com moldura branca ── */
 
 .ed-left {
-  padding: 0;             /* sem padding interno: imagem preenche os 50% completos */
+  padding: 0.6vh 0.4vw;   /* moldura branca bem fina dentro dos 50vw */
   display: flex;          /* permite imagem esticar em altura */
 }
 
@@ -99,7 +99,7 @@
 /* ── METADE DIREITA 50% — composição editorial vertical ── */
 
 .ed-right {
-  padding: 4vh 1vw 2vh 1.25vw;
+  padding: 4vh 4.5vw 2vh 3vw;   /* padding interno para respiro do texto */
 }
 
 /* Zona 1 — kicker pequeno discreto no topo */
