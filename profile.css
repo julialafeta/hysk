@@ -5,11 +5,11 @@
 
 .profile-shell {
   min-height: 100vh;
-  background: #FFF7DA;
+  background: #FFFBEB;
 }
 
 .profile {
-  background: #FFF7DA;
+  background: #FFFBEB;
   color: #1a1a1a;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   overflow-x: hidden;
@@ -221,7 +221,7 @@
 .s3-section {
   width: 100%;
   min-height: 100vh;
-  background: #FFF7DA;
+  background: #FFFBEB;
   padding: 0;
   margin-top: 10vh;            /* editorial breathing room between sections */
   box-sizing: border-box;
@@ -351,7 +351,7 @@
 .s2-section {
   width: 100%;
   min-height: 100vh;
-  background: #FFF7DA;
+  background: #FFFBEB;
   padding: 0;
   margin-top: 10vh;            /* mesmo gap usado entre seção 1 e 2 */
   box-sizing: border-box;
