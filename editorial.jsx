@@ -1,4 +1,4 @@
-// Editorial content for each person — poetic title, body essay, pull quote.
+// Editorial content for each person – poetic title, body essay, pull quote.
 // Indexed by person.id. Tone: interpretative, curatorial, like a critic wrote it.
 
 const EDITORIAL = {
@@ -8,9 +8,9 @@ const EDITORIAL = {
     date: "April 2026",
     category: "Architecture",
     handle: "@ada.mwangi",
-    intro: "Ada Mwangi designs public buildings the way other architects design cathedrals — slowly, and with the assumption that the people inside them deserve to feel held. Her libraries in Eastleigh and Kibera are also cooling shelters, civic offices, places to sit through the worst hours of the afternoon. She does not call this climate work. She calls it the basic question of who a building is for.",
+    intro: "Ada Mwangi designs public buildings the way other architects design cathedrals – slowly, and with the assumption that the people inside them deserve to feel held. Her libraries in Eastleigh and Kibera are also cooling shelters, civic offices, places to sit through the worst hours of the afternoon. She does not call this climate work. She calls it the basic question of who a building is for.",
     pullQuote: "A staircase is the most underrated room in any building. It's where the building admits what it really thinks of you.",
-    coda: "There is a measured patience in her drawings — the unhurried sense that a building, if it is honest, will outlast its first argument. She sketches in pencil. She uses the word dignity without irony.",
+    coda: "There is a measured patience in her drawings – the unhurried sense that a building, if it is honest, will outlast its first argument. She sketches in pencil. She uses the word dignity without irony.",
     credits: "Words: M. Vey · Photography: T. Okoth · Issue 04, 2026"
   },
   ki: {
@@ -41,11 +41,11 @@ const EDITORIAL = {
 // Keeps the page complete without inventing fake biography for everyone.
 const EDITORIAL_DEFAULT = (person) => ({
   title: ["A Practice", "Built on Refusal"],
-  location: "—",
+  location: "–",
   date: "Spring/Summer 2026",
   category: person.role,
   handle: `@${person.id}.indexoftaste`,
-  intro: `${person.name} works in a register most contemporary practitioners would consider impractical. ${person.blurb} The result is not a portfolio so much as a position — held quietly, repeated for years, against the grain of an industry that would prefer faster work and louder claims.`,
+  intro: `${person.name} works in a register most contemporary practitioners would consider impractical. ${person.blurb} The result is not a portfolio so much as a position – held quietly, repeated for years, against the grain of an industry that would prefer faster work and louder claims.`,
   pullQuote: person.why,
   coda: "The discipline of doing one thing, slowly, in public, is harder than it looks. It is also, increasingly, the only kind of work that lasts.",
   credits: "Words: Editorial · Photography: Archive · Issue 04, 2026"

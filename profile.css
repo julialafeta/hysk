@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════
-   EDITORIAL PROFILE — Faithful reconstruction of the reference
+   EDITORIAL PROFILE – Faithful reconstruction of the reference
    Only the first section. Strict 50/50 layout.
    ══════════════════════════════════════════════════════ */
 
@@ -55,7 +55,7 @@
 .ed-nav__arrows button:hover { opacity: 1; }
 
 /* ══════════════════════════════════════════════════════
-   SECTION — exact wireframe per spec
+   SECTION – exact wireframe per spec
    ══════════════════════════════════════════════════════ */
 
 .ed-section {
@@ -64,7 +64,7 @@
   box-sizing: border-box;
 }
 
-/* STRICT 50/50 grid — height determined by right content (image is absolute, doesn't interfere) */
+/* STRICT 50/50 grid – height determined by right content (image is absolute, doesn't interfere) */
 .ed-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -72,7 +72,7 @@
   align-items: stretch;
 }
 
-/* ── LEFT HALF 50% — image with white frame ── */
+/* ── LEFT HALF 50% – image with white frame ── */
 
 .ed-left {
   padding: 2vw;            /* uniform white frame on all 4 sides */
@@ -93,7 +93,7 @@
   filter: contrast(1.03) saturate(0.92);
 }
 
-/* ── RIGHT HALF 50% — vertical editorial composition ── */
+/* ── RIGHT HALF 50% – vertical editorial composition ── */
 
 .ed-right {
   padding: 5vh 4.5vw 2vw 3vw;   /* top compensates removed section padding; bottom = 2vw aligns with image base */
@@ -101,7 +101,7 @@
   flex-direction: column;
 }
 
-/* Zone 1 — small discrete kicker at the top */
+/* Zone 1 – small discrete kicker at the top */
 .ed-kicker {
   font-size: 0.7rem;
   letter-spacing: 0.18em;
@@ -111,7 +111,7 @@
   font-weight: 500;
 }
 
-/* Zone 1 — large main title, bold, ONE line, full-width */
+/* Zone 1 – large main title, bold, ONE line, full-width */
 .ed-title {
   font-size: clamp(2rem, 2.7vw, 3.6rem);
   line-height: 0.95;
@@ -124,7 +124,7 @@
   text-overflow: ellipsis;
 }
 
-/* Zone 1 — short subtitle, full-width as the title, justified, max 4 lines */
+/* Zone 1 – short subtitle, full-width as the title, justified, max 4 lines */
 .ed-subtitle {
   font-size: 0.92rem;
   line-height: 1.4;
@@ -140,7 +140,7 @@
   overflow: hidden;
 }
 
-/* Zone 2 — vertical metadata stack, discrete */
+/* Zone 2 – vertical metadata stack, discrete */
 .ed-meta {
   display: flex;
   flex-direction: column;
@@ -164,7 +164,7 @@
   font-weight: 500;
 }
 
-/* Zone 3 — 3 balanced columns (cross-browser) */
+/* Zone 3 – 3 balanced columns (cross-browser) */
 .ed-columns {
   width: 100%;
   column-count: 3;
@@ -213,7 +213,7 @@
 .ed-footer__next { text-align: right; }
 
 /* ══════════════════════════════════════════════════════
-   SECTION 3 — Editorial essay · strict 50/50
+   SECTION 3 – Editorial essay · strict 50/50
    left: kicker + intro + centered title + 2 thumbs + credits
    right: full-bleed image
    ══════════════════════════════════════════════════════ */
@@ -235,7 +235,7 @@
   min-height: 100vh;
 }
 
-/* ── LEFT HALF 50% — editorial composition ── */
+/* ── LEFT HALF 50% – editorial composition ── */
 
 .s3-left {
   position: relative;
@@ -276,7 +276,7 @@
   color: #1a1a1a;
 }
 
-/* Column of 2 vertical thumbs — end aligned with the base of the right image */
+/* Column of 2 vertical thumbs – end aligned with the base of the right image */
 .s3-thumbs {
   position: absolute;
   right: 3vw;
@@ -300,7 +300,7 @@
   filter: contrast(1.03) saturate(0.92);
 }
 
-/* Credits in the bottom-left corner — aligned with the base of the images */
+/* Credits in the bottom-left corner – aligned with the base of the images */
 .s3-credits {
   position: absolute;
   left: 2vw;
@@ -325,7 +325,7 @@
   font-weight: 600;
 }
 
-/* ── RIGHT HALF 50% — full-bleed image ── */
+/* ── RIGHT HALF 50% – full-bleed image ── */
 
 .s3-right {
   position: relative;
@@ -343,7 +343,7 @@
 }
 
 /* ══════════════════════════════════════════════════════
-   SECTION 2 — Editorial spread with pull quote · strict 50/50
+   SECTION 2 – Editorial spread with pull quote · strict 50/50
    left: kicker + large image + stack of 3 thumbs + caption
    direita: 3 colunas (texto · quote · texto)
    ══════════════════════════════════════════════════════ */
@@ -369,7 +369,7 @@
 .s2-right { order: 1; }
 .s2-left  { order: 2; }
 
-/* ── LEFT HALF 50% — image composition ── */
+/* ── LEFT HALF 50% – image composition ── */
 
 .s2-left {
   position: relative;
@@ -407,7 +407,7 @@
   filter: contrast(1.03) saturate(0.92);
 }
 
-/* Column of 3 images — aligns with the top and base of the 3-column area on the right */
+/* Column of 3 images – aligns with the top and base of the 3-column area on the right */
 .s2-stack {
   position: absolute;
   right: 3vw;
@@ -444,7 +444,7 @@
   color: #1a1a1a;
 }
 
-/* ── RIGHT HALF 50% — 3 columns (body + quote + body) ── */
+/* ── RIGHT HALF 50% – 3 columns (body + quote + body) ── */
 
 .s2-right {
   display: grid;
@@ -461,14 +461,14 @@
   hyphens: auto;
 }
 
-/* Side columns — editorial body */
+/* Side columns – editorial body */
 .s2-col--body {
   font-size: 0.88rem;
   line-height: 1.75;
   text-align: justify;
 }
 
-/* Middle column — dominant pull quote (max-height applied via JS to never exceed the side columns) */
+/* Middle column – dominant pull quote (max-height applied via JS to never exceed the side columns) */
 .s2-col--quote {
   font-size: clamp(2rem, 2.4vw, 3rem);
   line-height: 1.18;
@@ -479,7 +479,7 @@
 }
 
 /* ══════════════════════════════════════════════════════
-   SECTION 4 — Full-bleed image · text in the right half
+   SECTION 4 – Full-bleed image · text in the right half
    50/50 structure preserved internally: image covers 100%, text lives in the right 50%
    kicker no canto superior esquerdo (alinhado com s2/s3)
    white text with subtle gradient to ensure legibility
@@ -520,7 +520,7 @@
   pointer-events: none;
 }
 
-/* Kicker top-left — aligned with section 2 and 3 kickers */
+/* Kicker top-left – aligned with section 2 and 3 kickers */
 .s4-kicker {
   position: absolute;
   top: 4.5vh;
@@ -585,7 +585,7 @@
 }
 
 /* ══════════════════════════════════════════════════════
-   MOBILE — stacks vertically
+   MOBILE – stacks vertically
    ══════════════════════════════════════════════════════ */
 @media (max-width: 860px) {
   .ed-section { padding: 5vh 6vw; }

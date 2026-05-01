@@ -91,7 +91,7 @@ html, body {
 
 /* ── Figure preview (hover) ── */
 /* A miniature of the editorial profile that floats above the figure on hover.
-   Composed of layout primitives (lines, blocks, two stock images) — not a real screenshot. */
+   Composed of layout primitives (lines, blocks, two stock images) – not a real screenshot. */
 .figure-preview {
   position: absolute;
   bottom: calc(100% + 8px);

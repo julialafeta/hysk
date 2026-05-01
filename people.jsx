@@ -1,4 +1,4 @@
-// 12 curated figures — abstract silhouettes (placeholders for real cut-out photography).
+// 12 curated figures – abstract silhouettes (placeholders for real cut-out photography).
 // Each has distinct proportions, palette, and silhouette cues to read as a directory of personalities.
 
 const PEOPLE = [
@@ -7,7 +7,7 @@ const PEOPLE = [
     name: "Ada Mwangi",
     role: "Architect, Nairobi",
     blurb: "Builds public libraries that double as cooling shelters. Treats stairwells like cathedrals.",
-    why: "Reframing climate adaptation as civic dignity — not survivalism.",
+    why: "Reframing climate adaptation as civic dignity – not survivalism.",
     height: 360,
     palette: { coat: "#1a1a1a", inner: "#F4F0E8", pants: "#1a1a1a", skin: "#C49A7B", hair: "#0e0e0e" },
     silhouette: "long-coat",
@@ -139,7 +139,7 @@ const PEOPLE = [
     name: "Sofía Lindqvist",
     role: "Cartographer",
     blurb: "Maps disappearing villages in northern Patagonia. Walks every contour line.",
-    why: "Cartography as memorial work — geography that refuses to forget.",
+    why: "Cartography as memorial work – geography that refuses to forget.",
     height: 350,
     palette: { coat: "#3a4a3a", inner: "#F4F0E8", pants: "#1a1a1a", skin: "#E0BFA0", hair: "#7a4a2a" },
     silhouette: "anorak",
@@ -268,7 +268,7 @@ const PEOPLE = [
   }
 ];
 
-// Render a stylized cut-out figure — abstract, geometric, suggestive of fashion/personality.
+// Render a stylized cut-out figure – abstract, geometric, suggestive of fashion/personality.
 // NOT literal photography. Treats each figure as a placeholder with intentional character.
 function Figure({ person, onClick }) {
   const { palette: p, silhouette, propProp, height } = person;
@@ -509,7 +509,7 @@ function Figure({ person, onClick }) {
 // Tiny editorial-thumbnail preview that renders above a figure on hover.
 // Visually mirrors the profile page (title + image + columns + grid) at a small scale.
 function FigurePreview({ person }) {
-  const ed = (window.EDITORIAL && window.EDITORIAL[person.id]) || (window.EDITORIAL_DEFAULT && window.EDITORIAL_DEFAULT(person)) || { title: ['Profile'], category: person.role, location: '—' };
+  const ed = (window.EDITORIAL && window.EDITORIAL[person.id]) || (window.EDITORIAL_DEFAULT && window.EDITORIAL_DEFAULT(person)) || { title: ['Profile'], category: person.role, location: '–' };
   const titleStr = ed.title.join(' ').toUpperCase();
   const heroSrc = `https://picsum.photos/seed/${person.id}hero-100x100/280/180`;
   const a = `https://picsum.photos/seed/${person.id}a-100x100/120/160`;
