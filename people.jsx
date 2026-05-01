@@ -508,15 +508,17 @@ function Figure({ person, onClick }) {
 
 // Faithful miniature of the actual profile page that floats above the figure on hover.
 // Renders the real ProfileLayout1 component scaled down via CSS transform.
+// The outer container has stamp-style perforated edges; the inner frame has a colored border.
 function FigurePreview({ person }) {
   const noop = () => {};
-  // Lazy reference: ProfileLayout1 is defined in profile.jsx (loaded after this file)
   const Layout = window.ProfileLayout1;
   if (!Layout) return null;
   return (
     <div className="figure-preview" aria-hidden="true">
-      <div className="figure-preview__inner">
-        <Layout person={person} onBack={noop} onPrev={noop} onNext={noop} preview={true} />
+      <div className="figure-preview__frame">
+        <div className="figure-preview__inner">
+          <Layout person={person} onBack={noop} onPrev={noop} onNext={noop} preview={true} />
+        </div>
       </div>
     </div>
   );
