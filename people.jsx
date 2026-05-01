@@ -506,41 +506,18 @@ function Figure({ person, onClick }) {
   );
 }
 
-// Tiny editorial-thumbnail preview that renders above a figure on hover.
-// Visually mirrors the profile page (title + image + columns + grid) at a small scale.
+// Faithful miniature of the actual profile page that floats above the figure on hover.
+// Renders the real ProfileLayout1 component scaled down via CSS transform.
 function FigurePreview({ person }) {
-  const ed = (window.EDITORIAL && window.EDITORIAL[person.id]) || (window.EDITORIAL_DEFAULT && window.EDITORIAL_DEFAULT(person)) || { title: ['Profile'], category: person.role, location: '–' };
-  const titleStr = ed.title.join(' ').toUpperCase();
-  const heroSrc = `https://picsum.photos/seed/${person.id}hero-100x100/280/180`;
-  const a = `https://picsum.photos/seed/${person.id}a-100x100/120/160`;
-  const b = `https://picsum.photos/seed/${person.id}b-100x100/180/180`;
-  const close = `https://picsum.photos/seed/${person.id}close-100x100/300/120`;
+  const noop = () => {};
+  // Lazy reference: ProfileLayout1 is defined in profile.jsx (loaded after this file)
+  const Layout = window.ProfileLayout1;
+  if (!Layout) return null;
   return (
     <div className="figure-preview" aria-hidden="true">
-      <div className="fp-nav">
-        <span className="fp-logo">Aesthetica</span>
-        <span className="fp-pills">
-          <span /><span /><span /><span /><span />
-        </span>
-        <span className="fp-icons">⌕ ≡</span>
+      <div className="figure-preview__inner">
+        <Layout person={person} onBack={noop} onPrev={noop} onNext={noop} preview={true} />
       </div>
-      <div className="fp-title">{titleStr}</div>
-      <img className="fp-hero" src={heroSrc} alt="" loading="lazy" />
-      <div className="fp-meta">
-        <div className="fp-meta-col">
-          <div className="fp-meta-row" /><div className="fp-meta-row" /><div className="fp-meta-row" />
-        </div>
-        <div className="fp-body">
-          <div className="fp-line" /><div className="fp-line" /><div className="fp-line" />
-          <div className="fp-line fp-line-short" />
-          <div className="fp-line" /><div className="fp-line" /><div className="fp-line fp-line-short" />
-        </div>
-      </div>
-      <div className="fp-grid">
-        <img src={a} alt="" loading="lazy" />
-        <img src={b} alt="" loading="lazy" />
-      </div>
-      <img className="fp-close" src={close} alt="" loading="lazy" />
     </div>
   );
 }

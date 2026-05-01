@@ -4,14 +4,16 @@ function imgFor(seed, w, h) {
   return `https://picsum.photos/seed/${seed}/${w}/${h}`;
 }
 
-function ProfileLayout1({ person, onBack, onPrev, onNext }) {
+function ProfileLayout1({ person, onBack, onPrev, onNext, preview }) {
   const ed = (window.EDITORIAL && window.EDITORIAL[person.id]) || window.EDITORIAL_DEFAULT(person);
   const titleRef = useRef(null);
   const rightRef = useRef(null);
+  const articleRef = useRef(null);
 
   useEffect(() => {
+    if (preview) return;
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [person.id]);
+  }, [person.id, preview]);
 
   // Auto-fit: finds the largest font-size that fits in the available width on ONE line (binary search)
   useEffect(() => {
@@ -22,8 +24,6 @@ function ProfileLayout1({ person, onBack, onPrev, onNext }) {
       const cs = getComputedStyle(r);
       const w = r.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
       if (w <= 0) return;
-      // Binary search for the largest font-size where scrollWidth <= available width
-      // hi capped at an editorial ceiling to avoid oversize on short titles
       let lo = 14, hi = 64;
       for (let i = 0; i < 25; i++) {
         if (hi - lo < 0.3) break;
@@ -32,10 +32,8 @@ function ProfileLayout1({ person, onBack, onPrev, onNext }) {
         if (t.scrollWidth > w) hi = mid;
         else lo = mid;
       }
-      // Safety margin: -1px to ensure it never triggers ellipsis
       t.style.fontSize = Math.max(14, lo - 1) + 'px';
     };
-    // multiple triggers to capture final layout in every scenario
     fit();
     requestAnimationFrame(fit);
     setTimeout(fit, 100);
@@ -48,12 +46,14 @@ function ProfileLayout1({ person, onBack, onPrev, onNext }) {
   }, [person.id]);
 
   // S2 (spread): limit quote column height to never exceed the side body columns
+  // Scoped to this article instance (so previews don't conflict with the main profile)
   useEffect(() => {
     const fitQuote = () => {
-      const quote = document.querySelector('.s2-col--quote');
-      const bodies = document.querySelectorAll('.s2-col--body');
+      const root = articleRef.current;
+      if (!root) return;
+      const quote = root.querySelector('.s2-col--quote');
+      const bodies = root.querySelectorAll('.s2-col--body');
       if (!quote || bodies.length === 0) return;
-      // reset to measure natural height of side columns
       quote.style.maxHeight = 'none';
       const maxBodyHeight = Math.max(...Array.from(bodies).map(b => b.offsetHeight));
       if (maxBodyHeight > 0) {
@@ -70,6 +70,7 @@ function ProfileLayout1({ person, onBack, onPrev, onNext }) {
   }, [person.id]);
 
   useEffect(() => {
+    if (preview) return;
     const onKey = (e) => {
       if (e.key === 'Escape') onBack();
       if (e.key === 'ArrowLeft') onPrev();
@@ -77,7 +78,7 @@ function ProfileLayout1({ person, onBack, onPrev, onNext }) {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [onBack, onPrev, onNext]);
+  }, [onBack, onPrev, onNext, preview]);
 
   const titleText = Array.isArray(ed.title) ? ed.title.join(' ') : (ed.title || person.name);
   const kickerText = (person.role || ed.category || 'Profile');
@@ -123,7 +124,7 @@ function ProfileLayout1({ person, onBack, onPrev, onNext }) {
   const s2RightText = s2LongText.slice(s2SplitAt).trim();
 
   return (
-    <article className="profile">
+    <article className="profile" ref={articleRef}>
 
       <nav className="ed-nav">
         <button className="ed-nav__back" onClick={onBack}>← Index</button>
