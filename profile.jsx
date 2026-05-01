@@ -13,7 +13,7 @@ function Profile({ person, onBack, onPrev, onNext }) {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [person.id]);
 
-  // Auto-fit: dimensiona o título para encher exatamente a largura disponível em uma única linha
+  // Auto-fit: encontra o maior font-size que cabe na largura disponível em UMA linha (busca binária)
   useEffect(() => {
     const fit = () => {
       const t = titleRef.current;
@@ -22,15 +22,23 @@ function Profile({ person, onBack, onPrev, onNext }) {
       const cs = getComputedStyle(r);
       const w = r.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
       if (w <= 0) return;
-      // Mede largura natural a um tamanho fixo, calcula proporção
-      t.style.fontSize = '100px';
-      const natural = t.scrollWidth;
-      if (natural <= 0) return;
-      let next = (w / natural) * 100 * 0.99;
-      next = Math.max(22, Math.min(96, next));
-      t.style.fontSize = next + 'px';
+      // Busca binária pelo maior font-size onde scrollWidth <= largura disponível
+      let lo = 14, hi = 140;
+      for (let i = 0; i < 25; i++) {
+        if (hi - lo < 0.3) break;
+        const mid = (lo + hi) / 2;
+        t.style.fontSize = mid + 'px';
+        if (t.scrollWidth > w) hi = mid;
+        else lo = mid;
+      }
+      t.style.fontSize = lo + 'px';
     };
+    // múltiplos triggers para capturar layout final em todos os cenários
     fit();
+    requestAnimationFrame(fit);
+    setTimeout(fit, 100);
+    setTimeout(fit, 500);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     const ro = new ResizeObserver(fit);
     if (rightRef.current) ro.observe(rightRef.current);
     window.addEventListener('resize', fit);
