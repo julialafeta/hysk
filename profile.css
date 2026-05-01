@@ -296,11 +296,11 @@
   filter: contrast(1.03) saturate(0.92);
 }
 
-/* Créditos no canto inferior esquerdo */
+/* Créditos no canto inferior esquerdo — alinhados com a base das imagens */
 .s2-credits {
   position: absolute;
   left: 2vw;
-  bottom: 5vh;
+  bottom: 0;
   font-size: 0.9rem;
   line-height: 1.6;
   font-weight: 500;
