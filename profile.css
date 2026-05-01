@@ -235,7 +235,7 @@
 
 .s2-left {
   position: relative;
-  padding: 5vh 3vw 5vh 3.5vw;
+  padding: 0 3vw 5vh 2vw;     /* left = 2vw matching section 1; top = 0 alinha kicker com topo da imagem */
   box-sizing: border-box;
 }
 
@@ -251,15 +251,16 @@
   font-size: 1.05rem;
   line-height: 1.3;
   font-weight: 600;
-  max-width: 78%;
   margin: 0;
   color: #1a1a1a;
+  text-align: justify;
+  hyphens: auto;
 }
 
 /* Título centrado verticalmente no bloco esquerdo */
 .s2-title {
   position: absolute;
-  left: 3.5vw;
+  left: 2vw;
   top: 50%;
   transform: translateY(-50%);
   font-size: clamp(3rem, 4.4vw, 5rem);
@@ -271,11 +272,11 @@
   color: #1a1a1a;
 }
 
-/* Coluna de 2 thumbs verticais, próxima ao split central */
+/* Coluna de 2 thumbs verticais — terminam alinhados com a base da imagem da direita */
 .s2-thumbs {
   position: absolute;
   right: 3vw;
-  top: 20vh;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   gap: 2vh;
@@ -298,7 +299,7 @@
 /* Créditos no canto inferior esquerdo */
 .s2-credits {
   position: absolute;
-  left: 3.5vw;
+  left: 2vw;
   bottom: 5vh;
   font-size: 0.9rem;
   line-height: 1.6;
