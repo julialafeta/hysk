@@ -13,7 +13,7 @@ function Profile({ person, onBack, onPrev, onNext }) {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [person.id]);
 
-  // Auto-fit: encontra o maior font-size que cabe na largura disponível em UMA linha (busca binária)
+  // Auto-fit: finds the largest font-size that fits in the available width on ONE line (binary search)
   useEffect(() => {
     const fit = () => {
       const t = titleRef.current;
@@ -22,8 +22,8 @@ function Profile({ person, onBack, onPrev, onNext }) {
       const cs = getComputedStyle(r);
       const w = r.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
       if (w <= 0) return;
-      // Busca binária pelo maior font-size onde scrollWidth <= largura disponível
-      // hi limitado a um teto editorial para evitar tamanho exagerado em títulos curtos
+      // Binary search for the largest font-size where scrollWidth <= available width
+      // hi capped at an editorial ceiling to avoid oversize on short titles
       let lo = 14, hi = 64;
       for (let i = 0; i < 25; i++) {
         if (hi - lo < 0.3) break;
@@ -32,10 +32,10 @@ function Profile({ person, onBack, onPrev, onNext }) {
         if (t.scrollWidth > w) hi = mid;
         else lo = mid;
       }
-      // Margem de segurança: -1px para garantir que não acione ellipsis
+      // Safety margin: -1px to ensure it never triggers ellipsis
       t.style.fontSize = Math.max(14, lo - 1) + 'px';
     };
-    // múltiplos triggers para capturar layout final em todos os cenários
+    // multiple triggers to capture final layout in every scenario
     fit();
     requestAnimationFrame(fit);
     setTimeout(fit, 100);
@@ -47,13 +47,13 @@ function Profile({ person, onBack, onPrev, onNext }) {
     return () => { ro.disconnect(); window.removeEventListener('resize', fit); };
   }, [person.id]);
 
-  // S2 (spread): limita altura da coluna do quote para nunca ultrapassar as duas colunas laterais
+  // S2 (spread): limit quote column height to never exceed the side body columns
   useEffect(() => {
     const fitQuote = () => {
       const quote = document.querySelector('.s2-col--quote');
       const bodies = document.querySelectorAll('.s2-col--body');
       if (!quote || bodies.length === 0) return;
-      // reseta para medir altura natural das colunas laterais
+      // reset to measure natural height of side columns
       quote.style.maxHeight = 'none';
       const maxBodyHeight = Math.max(...Array.from(bodies).map(b => b.offsetHeight));
       if (maxBodyHeight > 0) {
@@ -80,43 +80,43 @@ function Profile({ person, onBack, onPrev, onNext }) {
   }, [onBack, onPrev, onNext]);
 
   const titleText = Array.isArray(ed.title) ? ed.title.join(' ') : (ed.title || person.name);
-  const kickerText = (person.role || ed.category || 'Perfil');
+  const kickerText = (person.role || ed.category || 'Profile');
   const subtitle = ed.intro || person.blurb || '';
 
-  // Indicador de posição: nº do perfil atual / total
+  // Position indicator: current profile number / total
   const profileIdx = PEOPLE.findIndex(p => p.id === person.id);
   const profileLabel = String(profileIdx + 1).padStart(2, '0') + ' / ' + String(PEOPLE.length).padStart(2, '0');
 
-  // Body text — limita em ~250 palavras (somando as 3 colunas)
+  // Body text — limit to ~250 words total (across all 3 columns)
   const baseText = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean).join(' ');
   let fullText = baseText;
   while (fullText && fullText.split(/\s+/).length < 250) fullText += ' ' + baseText;
   fullText = fullText.split(/\s+/).slice(0, 250).join(' ');
 
-  // Conteúdo da seção 3 (ensaio editorial)
-  const s3Kicker = ed.category || 'Ensaio';
+  // Section 3 content (editorial essay)
+  const s3Kicker = ed.category || 'Essay';
   const s3Intro = (ed.coda || person.blurb || person.why || '').split('. ').slice(0, 2).join('. ').trim() || person.blurb || '';
   const s3IntroFinal = s3Intro && !s3Intro.endsWith('.') ? s3Intro + '.' : s3Intro;
   const s3Title = person.name.split(' ').slice(-1)[0];
 
-  // Conteúdo da seção 2 (spread com pull quote)
-  const s2Kicker = 'Moda';
-  const s2Caption = `1, 2, 3 & 4. ${person.name} em estúdio: "${(person.why || person.blurb || '').split('.')[0]}"`;
-  // Quote: combina pullQuote + why + blurb + coda e reduz para ~50% das palavras
+  // Section 2 content (spread with pull quote)
+  const s2Kicker = 'Fashion';
+  const s2Caption = `1, 2, 3 & 4. ${person.name} in the studio: "${(person.why || person.blurb || '').split('.')[0]}"`;
+  // Quote: combines pullQuote + why + blurb + coda and reduces to ~50% of words
   const s2QuoteFull = [ed.pullQuote, person.why, person.blurb, ed.coda].filter(Boolean).join(' ');
   const s2QuoteWords = s2QuoteFull.split(/\s+/);
   const s2QuoteHalf = s2QuoteWords.slice(0, Math.ceil(s2QuoteWords.length / 2)).join(' ');
   const s2Quote = `"${s2QuoteHalf}"`;
 
-  // Conteúdo da seção 4
-  const s4Kicker = 'Moda';
-  const s4Subtitle = `${ed.location ? ed.location + ', ' : ''}${person.role.toLowerCase()} em primeira pessoa.`;
-  // Body text dividido para colunas laterais
+  // Section 4 content
+  const s4Kicker = 'Fashion';
+  const s4Subtitle = `${ed.location ? ed.location + ', ' : ''}${person.role.toLowerCase()} in first person.`;
+  // Body text split for side columns
   const s2FullText = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean).join(' ');
   let s2LongText = s2FullText;
   while (s2LongText && s2LongText.length < 1500) s2LongText += ' ' + s2FullText;
   const s2Mid = Math.floor(s2LongText.length / 2);
-  // Quebra na palavra mais próxima do meio
+  // Break at the word closest to the middle
   let s2SplitAt = s2LongText.lastIndexOf(' ', s2Mid);
   if (s2SplitAt < 0) s2SplitAt = s2Mid;
   const s2LeftText = s2LongText.slice(0, s2SplitAt).trim();
@@ -127,7 +127,7 @@ function Profile({ person, onBack, onPrev, onNext }) {
 
       <nav className="ed-nav">
         <button className="ed-nav__back" onClick={onBack}>← Index</button>
-        <span className="ed-nav__wordmark">Hysk · Vol. 01 · {profileLabel}</span>
+        <span className="ed-nav__wordmark">Index of Taste · Vol. 01 · {profileLabel}</span>
         <div className="ed-nav__arrows">
           <button onClick={onPrev}>←</button>
           <button onClick={onNext}>→</button>
@@ -137,29 +137,29 @@ function Profile({ person, onBack, onPrev, onNext }) {
       <section className="ed-section">
         <div className="ed-grid">
 
-          {/* metade esquerda 50% — imagem com moldura branca */}
+          {/* left half 50% — image with white frame */}
           <div className="ed-left">
             <div className="ed-image">
               <img src={imgFor(`${person.id}-portrait`, 900, 1200)} alt="" loading="eager" />
             </div>
           </div>
 
-          {/* metade direita 50% — kicker · título · subtítulo · metadata · 3 colunas */}
+          {/* right half 50% — kicker · title · subtitle · metadata · 3 columns */}
           <div className="ed-right" ref={rightRef}>
             <div className="ed-kicker">{kickerText}</div>
             <h1 className="ed-title" ref={titleRef}>{titleText}</h1>
             <p className="ed-subtitle">{subtitle}</p>
             <div className="ed-meta">
               <div className="ed-meta-item">
-                <div className="ed-meta-label">por</div>
-                <div className="ed-meta-value">Editorial Hysk</div>
+                <div className="ed-meta-label">by</div>
+                <div className="ed-meta-value">Editorial Index of Taste</div>
               </div>
               <div className="ed-meta-item">
-                <div className="ed-meta-label">fotografia</div>
-                <div className="ed-meta-value">Arquivo Pessoal</div>
+                <div className="ed-meta-label">photography</div>
+                <div className="ed-meta-value">Personal Archive</div>
               </div>
               <div className="ed-meta-item">
-                <div className="ed-meta-label">edição</div>
+                <div className="ed-meta-label">edition</div>
                 <div className="ed-meta-value">Vol. 01 · Spring/Summer 2026</div>
               </div>
             </div>
@@ -172,10 +172,10 @@ function Profile({ person, onBack, onPrev, onNext }) {
       </section>
 
       {/* ════════════════════════════════════════
-          ORDEM: S2 aparece como segundo bloco (logo após S1)
-          SEÇÃO 2 — Spread editorial com pull quote
-          esquerda: 3 colunas (texto · quote bold · texto) — invertido via grid order
-          direita: kicker + imagem grande + pilha de 3 thumbs + legenda
+          ORDER: S2 appears as the second block (right after S1)
+          SECTION 2 — Editorial spread with pull quote
+          left: 3 columns (body · bold quote · body) — inverted via grid order
+          right: kicker + large image + stack of 3 thumbs + caption
           ════════════════════════════════════════ */}
       <section className="s2-section">
         <div className="s2-grid">
@@ -210,10 +210,10 @@ function Profile({ person, onBack, onPrev, onNext }) {
       </section>
 
       {/* ════════════════════════════════════════
-          ORDEM: S3 aparece como terceiro bloco (após S2)
-          SEÇÃO 3 — Ensaio editorial
-          esquerda: kicker + intro + título centrado + 2 thumbs + créditos
-          direita: imagem full-bleed
+          ORDER: S3 appears as the third block (after S2)
+          SECTION 3 — Editorial essay
+          left: kicker + intro + centered title + 2 thumbs + credits
+          right: full-bleed image
           ════════════════════════════════════════ */}
       <section className="s3-section">
         <div className="s3-grid">
@@ -235,11 +235,11 @@ function Profile({ person, onBack, onPrev, onNext }) {
 
             <div className="s3-credits">
               <div className="s3-credits-row">
-                <div className="s3-credits-label">por</div>
-                <div className="s3-credits-value">Editorial Hysk</div>
+                <div className="s3-credits-label">by</div>
+                <div className="s3-credits-value">Editorial Index of Taste</div>
               </div>
               <div className="s3-credits-row">
-                <div className="s3-credits-label">fotos</div>
+                <div className="s3-credits-label">photos</div>
                 <div className="s3-credits-value">Pablo Saborido</div>
               </div>
             </div>
@@ -253,10 +253,10 @@ function Profile({ person, onBack, onPrev, onNext }) {
       </section>
 
       {/* ════════════════════════════════════════
-          SEÇÃO 4 — Spread editorial final
-          imagem full-bleed cobrindo toda a seção
-          kicker no canto superior esquerdo (alinhado com s2/s3)
-          texto sobreposto na metade direita: título + subtítulo + créditos
+          SECTION 4 — Final editorial spread
+          full-bleed image covering the whole section
+          kicker in the top-left corner (aligned with s2/s3)
+          text overlay in the right half: title + subtitle + credits
           ════════════════════════════════════════ */}
       <section className="s4-section">
         <div className="s4-photo">
@@ -270,11 +270,11 @@ function Profile({ person, onBack, onPrev, onNext }) {
           <p className="s4-subtitle">{s4Subtitle}</p>
           <div className="s4-credits">
             <div className="s4-credits-row">
-              <div className="s4-credits-label">Texto</div>
-              <div className="s4-credits-value">Editorial Hysk</div>
+              <div className="s4-credits-label">Text</div>
+              <div className="s4-credits-value">Editorial Index of Taste</div>
             </div>
             <div className="s4-credits-row">
-              <div className="s4-credits-label">Retrato</div>
+              <div className="s4-credits-label">Portrait</div>
               <div className="s4-credits-value">Pablo Saborido</div>
             </div>
           </div>

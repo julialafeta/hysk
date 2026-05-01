@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════════════
-   EDITORIAL PROFILE — Reconstrução fiel da referência
-   Apenas a primeira seção. Layout 50/50 estrito.
+   EDITORIAL PROFILE — Faithful reconstruction of the reference
+   Only the first section. Strict 50/50 layout.
    ══════════════════════════════════════════════════════ */
 
 .profile-shell {
@@ -55,7 +55,7 @@
 .ed-nav__arrows button:hover { opacity: 1; }
 
 /* ══════════════════════════════════════════════════════
-   SECTION — wireframe exato da spec
+   SECTION — exact wireframe per spec
    ══════════════════════════════════════════════════════ */
 
 .ed-section {
@@ -64,7 +64,7 @@
   box-sizing: border-box;
 }
 
-/* Grid 50/50 ESTRITO — altura determinada pelo conteúdo direito (imagem é absoluta, não interfere) */
+/* STRICT 50/50 grid — height determined by right content (image is absolute, doesn't interfere) */
 .ed-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -72,16 +72,16 @@
   align-items: stretch;
 }
 
-/* ── METADE ESQUERDA 50% — imagem com moldura branca ── */
+/* ── LEFT HALF 50% — image with white frame ── */
 
 .ed-left {
-  padding: 2vw;            /* moldura branca uniforme nos 4 lados */
-  position: relative;      /* container para imagem absoluta */
+  padding: 2vw;            /* uniform white frame on all 4 sides */
+  position: relative;      /* container for absolute image */
 }
 
 .ed-image {
-  position: absolute;     /* não interfere na altura natural da célula */
-  inset: 2vw;             /* preenche o .ed-left descontando a moldura branca */
+  position: absolute;     /* doesn't interfere with the natural cell height */
+  inset: 2vw;             /* fills .ed-left minus the white frame */
   overflow: hidden;
 }
 
@@ -93,15 +93,15 @@
   filter: contrast(1.03) saturate(0.92);
 }
 
-/* ── METADE DIREITA 50% — composição editorial vertical ── */
+/* ── RIGHT HALF 50% — vertical editorial composition ── */
 
 .ed-right {
-  padding: 5vh 4.5vw 2vw 3vw;   /* top compensa remoção do padding da seção; bottom = 2vw alinha com base da imagem */
+  padding: 5vh 4.5vw 2vw 3vw;   /* top compensates removed section padding; bottom = 2vw aligns with image base */
   display: flex;
   flex-direction: column;
 }
 
-/* Zona 1 — kicker pequeno discreto no topo */
+/* Zone 1 — small discrete kicker at the top */
 .ed-kicker {
   font-size: 0.7rem;
   letter-spacing: 0.18em;
@@ -111,7 +111,7 @@
   font-weight: 500;
 }
 
-/* Zona 1 — título principal grande, bold, em UMA linha, full-width */
+/* Zone 1 — large main title, bold, ONE line, full-width */
 .ed-title {
   font-size: clamp(2rem, 2.7vw, 3.6rem);
   line-height: 0.95;
@@ -124,7 +124,7 @@
   text-overflow: ellipsis;
 }
 
-/* Zona 1 — subtítulo curto, full-width como o título, justificado, max 4 linhas */
+/* Zone 1 — short subtitle, full-width as the title, justified, max 4 lines */
 .ed-subtitle {
   font-size: 0.92rem;
   line-height: 1.4;
@@ -140,7 +140,7 @@
   overflow: hidden;
 }
 
-/* Zona 2 — metadata em stack vertical, discreto */
+/* Zone 2 — vertical metadata stack, discrete */
 .ed-meta {
   display: flex;
   flex-direction: column;
@@ -152,7 +152,7 @@
   margin: 0 0 9vh;
 }
 
-.ed-meta-item { /* container de cada par label/value */ }
+.ed-meta-item { /* container for each label/value pair */ }
 
 .ed-meta-label {
   color: #999;
@@ -164,12 +164,12 @@
   font-weight: 500;
 }
 
-/* Zona 3 — 3 colunas balanceadas (cross-browser) */
+/* Zone 3 — 3 balanced columns (cross-browser) */
 .ed-columns {
   width: 100%;
   column-count: 3;
   column-gap: 1.6vw;
-  column-fill: balance;   /* distribui o texto igualmente nas 3 colunas em todos os browsers */
+  column-fill: balance;   /* distributes text evenly across 3 columns in all browsers */
 }
 
 .ed-columns p {
@@ -213,9 +213,9 @@
 .ed-footer__next { text-align: right; }
 
 /* ══════════════════════════════════════════════════════
-   SEÇÃO 3 — Ensaio editorial · 50/50 estrito
-   esquerda: kicker + intro + título centrado + 2 thumbs + créditos
-   direita: imagem full-bleed
+   SECTION 3 — Editorial essay · strict 50/50
+   left: kicker + intro + centered title + 2 thumbs + credits
+   right: full-bleed image
    ══════════════════════════════════════════════════════ */
 
 .s3-section {
@@ -223,7 +223,7 @@
   min-height: 100vh;
   background: #FAFAF7;
   padding: 0;
-  margin-top: 10vh;            /* respiro editorial entre seções */
+  margin-top: 10vh;            /* editorial breathing room between sections */
   box-sizing: border-box;
 }
 
@@ -235,11 +235,11 @@
   min-height: 100vh;
 }
 
-/* ── METADE ESQUERDA 50% — composição editorial ── */
+/* ── LEFT HALF 50% — editorial composition ── */
 
 .s3-left {
   position: relative;
-  padding: 0 3vw 5vh 2vw;     /* left = 2vw matching section 1; top = 0 alinha kicker com topo da imagem */
+  padding: 0 3vw 5vh 2vw;     /* left = 2vw matching section 1; top = 0 aligns kicker with image top */
   box-sizing: border-box;
 }
 
@@ -261,7 +261,7 @@
   hyphens: auto;
 }
 
-/* Título centrado verticalmente no bloco esquerdo */
+/* Title vertically centered in the left block */
 .s3-title {
   position: absolute;
   left: 2vw;
@@ -276,7 +276,7 @@
   color: #1a1a1a;
 }
 
-/* Coluna de 2 thumbs verticais — terminam alinhados com a base da imagem da direita */
+/* Column of 2 vertical thumbs — end aligned with the base of the right image */
 .s3-thumbs {
   position: absolute;
   right: 3vw;
@@ -300,7 +300,7 @@
   filter: contrast(1.03) saturate(0.92);
 }
 
-/* Créditos no canto inferior esquerdo — alinhados com a base das imagens */
+/* Credits in the bottom-left corner — aligned with the base of the images */
 .s3-credits {
   position: absolute;
   left: 2vw;
@@ -325,7 +325,7 @@
   font-weight: 600;
 }
 
-/* ── METADE DIREITA 50% — imagem full-bleed ── */
+/* ── RIGHT HALF 50% — full-bleed image ── */
 
 .s3-right {
   position: relative;
@@ -343,8 +343,8 @@
 }
 
 /* ══════════════════════════════════════════════════════
-   SEÇÃO 2 — Spread editorial com pull quote · 50/50 estrito
-   esquerda: kicker + imagem grande + pilha de 3 thumbs + legenda
+   SECTION 2 — Editorial spread with pull quote · strict 50/50
+   left: kicker + large image + stack of 3 thumbs + caption
    direita: 3 colunas (texto · quote · texto)
    ══════════════════════════════════════════════════════ */
 
@@ -369,7 +369,7 @@
 .s2-right { order: 1; }
 .s2-left  { order: 2; }
 
-/* ── METADE ESQUERDA 50% — composição de imagens ── */
+/* ── LEFT HALF 50% — image composition ── */
 
 .s2-left {
   position: relative;
@@ -377,7 +377,7 @@
   box-sizing: border-box;
 }
 
-/* Kicker absolute, alinhado com o topo do primeiro thumb da stack (top: 4.5vh) */
+/* Absolute kicker, aligned with the top of the first stack thumb (top: 4.5vh) */
 .s2-kicker {
   position: absolute;
   top: 4.5vh;
@@ -389,11 +389,11 @@
   line-height: 1;
 }
 
-/* Imagem grande dominante na esquerda */
+/* Large dominant image on the left */
 .s2-main {
   position: absolute;
   left: 2vw;
-  top: 4.5vh;             /* alinha com o topo do primeiro thumb da stack */
+  top: 4.5vh;             /* aligns with the top of the first stack thumb */
   width: 54%;
   aspect-ratio: 3 / 4;
   overflow: hidden;
@@ -407,12 +407,12 @@
   filter: contrast(1.03) saturate(0.92);
 }
 
-/* Coluna de 3 imagens — alinha com o topo e a base da área das 3 colunas à direita */
+/* Column of 3 images — aligns with the top and base of the 3-column area on the right */
 .s2-stack {
   position: absolute;
   right: 3vw;
-  top: 4.5vh;                /* mesmo padding-top de .s2-right */
-  bottom: 4.5vh;             /* mesmo padding-bottom de .s2-right */
+  top: 4.5vh;                /* same padding-top as .s2-right */
+  bottom: 4.5vh;             /* same padding-bottom as .s2-right */
   width: 27%;
   display: flex;
   flex-direction: column;
@@ -420,7 +420,7 @@
 }
 
 .s2-stack-img {
-  flex: 1;                    /* divide igualmente a altura disponível */
+  flex: 1;                    /* splits the available height evenly */
   width: 100%;
   overflow: hidden;
 }
@@ -433,7 +433,7 @@
   filter: contrast(1.03) saturate(0.92);
 }
 
-/* Legenda alinhada com a base do último thumb (mesmo bottom: 4.5vh) */
+/* Caption aligned with the base of the last thumb (same bottom: 4.5vh) */
 .s2-caption {
   position: absolute;
   left: 2vw;
@@ -444,7 +444,7 @@
   color: #1a1a1a;
 }
 
-/* ── METADE DIREITA 50% — 3 colunas (texto + quote + texto) ── */
+/* ── RIGHT HALF 50% — 3 columns (body + quote + body) ── */
 
 .s2-right {
   display: grid;
@@ -461,14 +461,14 @@
   hyphens: auto;
 }
 
-/* Colunas laterais — corpo editorial */
+/* Side columns — editorial body */
 .s2-col--body {
   font-size: 0.88rem;
   line-height: 1.75;
   text-align: justify;
 }
 
-/* Coluna do meio — pull quote dominante (max-height aplicado via JS para nunca ultrapassar as laterais) */
+/* Middle column — dominant pull quote (max-height applied via JS to never exceed the side columns) */
 .s2-col--quote {
   font-size: clamp(2rem, 2.4vw, 3rem);
   line-height: 1.18;
@@ -479,21 +479,21 @@
 }
 
 /* ══════════════════════════════════════════════════════
-   SEÇÃO 4 — Imagem full-bleed · texto na metade direita
-   estrutura 50/50 mantida internamente: imagem cobre 100%, texto vive nos 50% direitos
+   SECTION 4 — Full-bleed image · text in the right half
+   50/50 structure preserved internally: image covers 100%, text lives in the right 50%
    kicker no canto superior esquerdo (alinhado com s2/s3)
-   texto branco com gradiente sutil para garantir legibilidade
+   white text with subtle gradient to ensure legibility
    ══════════════════════════════════════════════════════ */
 
 .s4-section {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  margin-top: 10vh;            /* mesmo gap entre as seções anteriores */
+  margin-top: 10vh;            /* same gap as the previous sections */
   overflow: hidden;
 }
 
-/* Imagem cobre toda a seção */
+/* Image covers the entire section */
 .s4-photo {
   position: absolute;
   inset: 0;
@@ -510,7 +510,7 @@
   filter: contrast(1.03) saturate(0.92);
 }
 
-/* Gradiente sutil no topo para garantir contraste do texto branco */
+/* Subtle top gradient to ensure white text contrast */
 .s4-photo::after {
   content: '';
   position: absolute;
@@ -520,7 +520,7 @@
   pointer-events: none;
 }
 
-/* Kicker top-left — alinhado com kickers das seções 2 e 3 */
+/* Kicker top-left — aligned with section 2 and 3 kickers */
 .s4-kicker {
   position: absolute;
   top: 4.5vh;
@@ -532,7 +532,7 @@
   margin: 0;
 }
 
-/* Cluster de texto sobreposto, ancorado na metade direita */
+/* Text cluster overlay, anchored in the right half */
 .s4-text {
   position: absolute;
   top: 8vh;
@@ -585,7 +585,7 @@
 }
 
 /* ══════════════════════════════════════════════════════
-   MOBILE — empilha verticalmente
+   MOBILE — stacks vertically
    ══════════════════════════════════════════════════════ */
 @media (max-width: 860px) {
   .ed-section { padding: 5vh 6vw; }

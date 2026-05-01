@@ -16,8 +16,8 @@ const HEADLINE_OPTIONS = [
   "Worth Your Attention"
 ];
 
-// Rende o headline com a palavra "of" em itálico (case-insensitive) e kerning assimétrico
-// (esquerda mais apertada, direita com mais respiro porque a haste do "f" itálico avança)
+// Renders the headline with the word "of" italic (case-insensitive) with asymmetric kerning
+// (tighter on the left, more breathing room on the right because the italic "f" stem extends)
 function renderHeadline(text) {
   return text.split(/(\bof\b)/i).map((part, i) =>
     /^of$/i.test(part)
@@ -45,7 +45,7 @@ function IndexView({ tweaks, onSelect }) {
       </main>
 
       <footer className="colophon">
-        <span>Hysk</span>
+        <span>Index of Taste</span>
         <span>An ongoing index</span>
         <span>{PEOPLE.length} entries</span>
       </footer>

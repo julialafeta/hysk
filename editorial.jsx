@@ -44,7 +44,7 @@ const EDITORIAL_DEFAULT = (person) => ({
   location: "—",
   date: "Spring/Summer 2026",
   category: person.role,
-  handle: `@${person.id}.hysk`,
+  handle: `@${person.id}.indexoftaste`,
   intro: `${person.name} works in a register most contemporary practitioners would consider impractical. ${person.blurb} The result is not a portfolio so much as a position — held quietly, repeated for years, against the grain of an industry that would prefer faster work and louder claims.`,
   pullQuote: person.why,
   coda: "The discipline of doing one thing, slowly, in public, is harder than it looks. It is also, increasingly, the only kind of work that lasts.",
