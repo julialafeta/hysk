@@ -65,25 +65,26 @@
   box-sizing: border-box;
 }
 
-/* Grid 50/50 estrito — mesma largura nos dois lados */
+/* Grid 50/50 estrito — mesma largura nos dois lados; itens esticam em altura */
 .ed-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 3.5vw;
-  align-items: start;
+  align-items: stretch;
+  min-height: calc(100vh - 14vh);
 }
 
 /* ── METADE ESQUERDA 50% — imagem com moldura branca ── */
 
 .ed-left {
   padding: 2vh 1vw;
+  display: flex;          /* permite imagem esticar em altura */
 }
 
 .ed-image {
   width: 100%;
   max-width: 100%;
-  margin: 0 auto;
-  aspect-ratio: 3 / 4;   /* portrait — fiel à referência */
+  flex: 1;                /* preenche toda a altura disponível da metade esquerda */
   overflow: hidden;
 }
 
