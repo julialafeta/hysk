@@ -43,9 +43,22 @@ function IndexView({ tweaks, onSelect }) {
   );
 }
 
+function getRoute() {
+  const m = window.location.pathname.match(/^\/p\/([^/]+)/);
+  return m ? { view: 'profile', id: m[1] } : { view: 'index' };
+}
+
 function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [activeId, setActiveId] = useState(null);
+  const [route, setRoute] = useState(getRoute);
+
+  useEffect(() => {
+    const onPop = () => setRoute(getRoute());
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  const activeId = route.view === 'profile' ? route.id : null;
 
   useEffect(() => {
     document.body.style.background = activeId ? "#2a2724" : tweaks.background;
@@ -54,9 +67,10 @@ function App() {
   const activeIdx = activeId ? PEOPLE.findIndex(p => p.id === activeId) : -1;
   const activePerson = activeIdx >= 0 ? PEOPLE[activeIdx] : null;
 
-  const goPrev = () => setActiveId(PEOPLE[(activeIdx - 1 + PEOPLE.length) % PEOPLE.length].id);
-  const goNext = () => setActiveId(PEOPLE[(activeIdx + 1) % PEOPLE.length].id);
-  const goBack = () => setActiveId(null);
+  const goTo = (id) => { window.history.pushState(null, null, `/p/${id}`); setRoute({ view: 'profile', id }); };
+  const goPrev = () => goTo(PEOPLE[(activeIdx - 1 + PEOPLE.length) % PEOPLE.length].id);
+  const goNext = () => goTo(PEOPLE[(activeIdx + 1) % PEOPLE.length].id);
+  const goBack = () => { window.history.pushState(null, null, '/'); setRoute({ view: 'index' }); };
 
   if (activePerson) {
     return (
@@ -74,7 +88,7 @@ function App() {
 
   return (
     <>
-      <IndexView tweaks={tweaks} onSelect={(p) => setActiveId(p.id)} />
+      <IndexView tweaks={tweaks} onSelect={(p) => goTo(p.id)} />
 
       <TweaksPanel title="Tweaks">
         <TweakSection label="Headline">

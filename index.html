@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<script>
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var p = params.get('p');
+    if (p) window.history.replaceState(null, null, '/' + p + window.location.hash);
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hysk — Underseen</title>
 <link rel="stylesheet" href="styles.css?v=7" />
