@@ -42,7 +42,7 @@ const EDITORIAL = {
 const EDITORIAL_DEFAULT = (person) => ({
   title: ["A Practice", "Built on Refusal"],
   location: "—",
-  date: "Spring 2026",
+  date: "Spring/Summer 2026",
   category: person.role,
   handle: `@${person.id}.hysk`,
   intro: `${person.name} works in a register most contemporary practitioners would consider impractical. ${person.blurb} The result is not a portfolio so much as a position — held quietly, repeated for years, against the grain of an industry that would prefer faster work and louder claims.`,

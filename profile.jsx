@@ -126,8 +126,8 @@ function Profile({ person, onBack, onPrev, onNext }) {
     <article className="profile">
 
       <nav className="ed-nav">
-        <button className="ed-nav__back" onClick={onBack}>← Índice</button>
-        <span className="ed-nav__wordmark">Hysk · Vol. 04 · {profileLabel}</span>
+        <button className="ed-nav__back" onClick={onBack}>← Index</button>
+        <span className="ed-nav__wordmark">Hysk · Vol. 01 · {profileLabel}</span>
         <div className="ed-nav__arrows">
           <button onClick={onPrev}>←</button>
           <button onClick={onNext}>→</button>
@@ -160,7 +160,7 @@ function Profile({ person, onBack, onPrev, onNext }) {
               </div>
               <div className="ed-meta-item">
                 <div className="ed-meta-label">edição</div>
-                <div className="ed-meta-value">Vol. 04 · Primavera 2026</div>
+                <div className="ed-meta-value">Vol. 01 · Spring/Summer 2026</div>
               </div>
             </div>
             <div className="ed-columns">
