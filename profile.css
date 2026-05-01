@@ -219,6 +219,7 @@
    ══════════════════════════════════════════════════════ */
 
 .s2-section {
+  display: none;               /* SEÇÃO 2 OCULTA — remova esta linha para reaparecer */
   width: 100%;
   min-height: 100vh;
   background: #FAFAF7;
