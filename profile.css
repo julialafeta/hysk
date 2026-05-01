@@ -124,16 +124,20 @@
   text-overflow: ellipsis;
 }
 
-/* Zona 1 — subtítulo curto, full-width como o título, justificado */
+/* Zona 1 — subtítulo curto, full-width como o título, justificado, max 4 linhas */
 .ed-subtitle {
-  font-size: 1rem;
-  line-height: 1.3;
+  font-size: 0.92rem;
+  line-height: 1.4;
   font-weight: 700;
   color: #444;
   margin: 0 0 3.2vh;
-  letter-spacing: -0.005em;
+  letter-spacing: 0.01em;
   text-align: justify;
   hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Zona 2 — metadata em stack vertical, discreto */
@@ -170,7 +174,7 @@
 
 .ed-columns p {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   line-height: 1.75;
   color: #666;
   text-align: justify;
@@ -248,8 +252,8 @@
 }
 
 .s2-intro {
-  font-size: 1.05rem;
-  line-height: 1.3;
+  font-size: 1.3rem;
+  line-height: 1.32;
   font-weight: 600;
   margin: 0;
   color: #1a1a1a;
