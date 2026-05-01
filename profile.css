@@ -366,6 +366,10 @@
   min-height: 100vh;
 }
 
+/* Inversão s3: colunas à esquerda, imagens à direita (via grid order, sem mexer no JSX) */
+.s3-right { order: 1; }
+.s3-left  { order: 2; }
+
 /* ── METADE ESQUERDA 50% — composição de imagens ── */
 
 .s3-left {

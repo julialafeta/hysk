@@ -23,7 +23,8 @@ function Profile({ person, onBack, onPrev, onNext }) {
       const w = r.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
       if (w <= 0) return;
       // Busca binária pelo maior font-size onde scrollWidth <= largura disponível
-      let lo = 14, hi = 140;
+      // hi limitado a um teto editorial para evitar tamanho exagerado em títulos curtos
+      let lo = 14, hi = 64;
       for (let i = 0; i < 25; i++) {
         if (hi - lo < 0.3) break;
         const mid = (lo + hi) / 2;
@@ -31,7 +32,8 @@ function Profile({ person, onBack, onPrev, onNext }) {
         if (t.scrollWidth > w) hi = mid;
         else lo = mid;
       }
-      t.style.fontSize = lo + 'px';
+      // Margem de segurança: -1px para garantir que não acione ellipsis
+      t.style.fontSize = Math.max(14, lo - 1) + 'px';
     };
     // múltiplos triggers para capturar layout final em todos os cenários
     fit();
