@@ -213,12 +213,12 @@
 .ed-footer__next { text-align: right; }
 
 /* ══════════════════════════════════════════════════════
-   SEÇÃO 2 — Ensaio editorial · 50/50 estrito
+   SEÇÃO 3 — Ensaio editorial · 50/50 estrito
    esquerda: kicker + intro + título centrado + 2 thumbs + créditos
    direita: imagem full-bleed
    ══════════════════════════════════════════════════════ */
 
-.s2-section {
+.s3-section {
   width: 100%;
   min-height: 100vh;
   background: #FAFAF7;
@@ -227,7 +227,7 @@
   box-sizing: border-box;
 }
 
-.s2-grid {
+.s3-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   column-gap: 0;
@@ -237,13 +237,13 @@
 
 /* ── METADE ESQUERDA 50% — composição editorial ── */
 
-.s2-left {
+.s3-left {
   position: relative;
   padding: 0 3vw 5vh 2vw;     /* left = 2vw matching section 1; top = 0 alinha kicker com topo da imagem */
   box-sizing: border-box;
 }
 
-.s2-kicker {
+.s3-kicker {
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0;
@@ -251,7 +251,7 @@
   color: #1a1a1a;
 }
 
-.s2-intro {
+.s3-intro {
   font-size: 1.3rem;
   line-height: 1.32;
   font-weight: 600;
@@ -262,7 +262,7 @@
 }
 
 /* Título centrado verticalmente no bloco esquerdo */
-.s2-title {
+.s3-title {
   position: absolute;
   left: 2vw;
   top: 50%;
@@ -277,7 +277,7 @@
 }
 
 /* Coluna de 2 thumbs verticais — terminam alinhados com a base da imagem da direita */
-.s2-thumbs {
+.s3-thumbs {
   position: absolute;
   right: 3vw;
   bottom: 0;
@@ -286,13 +286,13 @@
   gap: 2vh;
 }
 
-.s2-thumb {
+.s3-thumb {
   width: 15vw;
   aspect-ratio: 3 / 4;
   overflow: hidden;
 }
 
-.s2-thumb img {
+.s3-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -301,7 +301,7 @@
 }
 
 /* Créditos no canto inferior esquerdo — alinhados com a base das imagens */
-.s2-credits {
+.s3-credits {
   position: absolute;
   left: 2vw;
   bottom: 0;
@@ -311,30 +311,30 @@
   color: #1a1a1a;
 }
 
-.s2-credits-row {
+.s3-credits-row {
   margin-bottom: 1.2vh;
 }
-.s2-credits-row:last-child { margin-bottom: 0; }
+.s3-credits-row:last-child { margin-bottom: 0; }
 
-.s2-credits-label {
+.s3-credits-label {
   font-weight: 400;
   opacity: 0.55;
 }
 
-.s2-credits-value {
+.s3-credits-value {
   font-weight: 600;
 }
 
 /* ── METADE DIREITA 50% — imagem full-bleed ── */
 
-.s2-right {
+.s3-right {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
-.s2-right img {
+.s3-right img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -343,12 +343,12 @@
 }
 
 /* ══════════════════════════════════════════════════════
-   SEÇÃO 3 — Spread editorial com pull quote · 50/50 estrito
+   SEÇÃO 2 — Spread editorial com pull quote · 50/50 estrito
    esquerda: kicker + imagem grande + pilha de 3 thumbs + legenda
    direita: 3 colunas (texto · quote · texto)
    ══════════════════════════════════════════════════════ */
 
-.s3-section {
+.s2-section {
   width: 100%;
   min-height: 100vh;
   background: #FAFAF7;
@@ -357,7 +357,7 @@
   box-sizing: border-box;
 }
 
-.s3-grid {
+.s2-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   column-gap: 0;
@@ -366,18 +366,18 @@
 }
 
 /* Inversão s3: colunas à esquerda, imagens à direita (via grid order, sem mexer no JSX) */
-.s3-right { order: 1; }
-.s3-left  { order: 2; }
+.s2-right { order: 1; }
+.s2-left  { order: 2; }
 
 /* ── METADE ESQUERDA 50% — composição de imagens ── */
 
-.s3-left {
+.s2-left {
   position: relative;
   padding: 4.5vh 3vw 4.5vh 2vw;   /* left = 2vw matching sections 1 & 2 */
   box-sizing: border-box;
 }
 
-.s3-kicker {
+.s2-kicker {
   font-size: 0.72rem;
   font-weight: 600;
   margin: 0 0 2.5vh;
@@ -385,7 +385,7 @@
 }
 
 /* Imagem grande dominante na esquerda */
-.s3-main {
+.s2-main {
   position: absolute;
   left: 2vw;
   top: 9vh;
@@ -394,7 +394,7 @@
   overflow: hidden;
 }
 
-.s3-main img {
+.s2-main img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -403,24 +403,24 @@
 }
 
 /* Coluna de 3 imagens — alinha com o topo e a base da área das 3 colunas à direita */
-.s3-stack {
+.s2-stack {
   position: absolute;
   right: 3vw;
-  top: 4.5vh;                /* mesmo padding-top de .s3-right */
-  bottom: 4.5vh;             /* mesmo padding-bottom de .s3-right */
+  top: 4.5vh;                /* mesmo padding-top de .s2-right */
+  bottom: 4.5vh;             /* mesmo padding-bottom de .s2-right */
   width: 27%;
   display: flex;
   flex-direction: column;
   gap: 2.2vh;
 }
 
-.s3-stack-img {
+.s2-stack-img {
   flex: 1;                    /* divide igualmente a altura disponível */
   width: 100%;
   overflow: hidden;
 }
 
-.s3-stack-img img {
+.s2-stack-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -429,7 +429,7 @@
 }
 
 /* Legenda alinhada com a base do último thumb (mesmo bottom: 4.5vh) */
-.s3-caption {
+.s2-caption {
   position: absolute;
   left: 2vw;
   bottom: 4.5vh;
@@ -441,7 +441,7 @@
 
 /* ── METADE DIREITA 50% — 3 colunas (texto + quote + texto) ── */
 
-.s3-right {
+.s2-right {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 2vw;
@@ -450,21 +450,21 @@
   box-sizing: border-box;
 }
 
-.s3-col {
+.s2-col {
   margin: 0;
   color: #1a1a1a;
   hyphens: auto;
 }
 
 /* Colunas laterais — corpo editorial */
-.s3-col--body {
+.s2-col--body {
   font-size: 0.88rem;
   line-height: 1.75;
   text-align: justify;
 }
 
 /* Coluna do meio — pull quote dominante (max-height aplicado via JS para nunca ultrapassar as laterais) */
-.s3-col--quote {
+.s2-col--quote {
   font-size: clamp(2rem, 2.4vw, 3rem);
   line-height: 1.18;
   font-weight: 800;
@@ -610,33 +610,6 @@
   }
   .ed-footer__prev, .ed-footer__next { text-align: center; }
 
-  /* SEÇÃO 2 mobile */
-  .s2-section { margin-top: 6vh; }
-  .s2-grid { grid-template-columns: 1fr; min-height: auto; row-gap: 4vh; }
-  .s2-left {
-    padding: 5vh 6vw;
-    min-height: auto;
-  }
-  .s2-intro { max-width: 100%; }
-  .s2-title {
-    position: static;
-    transform: none;
-    max-width: 100%;
-    margin: 5vh 0;
-    font-size: clamp(2.2rem, 8vw, 3.6rem);
-  }
-  .s2-thumbs {
-    position: static;
-    flex-direction: row;
-    margin: 4vh 0;
-  }
-  .s2-thumb { width: 40vw; }
-  .s2-credits {
-    position: static;
-    margin-top: 4vh;
-  }
-  .s2-right { aspect-ratio: 4/5; }
-
   /* SEÇÃO 3 mobile */
   .s3-section { margin-top: 6vh; }
   .s3-grid { grid-template-columns: 1fr; min-height: auto; row-gap: 4vh; }
@@ -644,30 +617,57 @@
     padding: 5vh 6vw;
     min-height: auto;
   }
-  .s3-main {
+  .s3-intro { max-width: 100%; }
+  .s3-title {
+    position: static;
+    transform: none;
+    max-width: 100%;
+    margin: 5vh 0;
+    font-size: clamp(2.2rem, 8vw, 3.6rem);
+  }
+  .s3-thumbs {
+    position: static;
+    flex-direction: row;
+    margin: 4vh 0;
+  }
+  .s3-thumb { width: 40vw; }
+  .s3-credits {
+    position: static;
+    margin-top: 4vh;
+  }
+  .s3-right { aspect-ratio: 4/5; }
+
+  /* SEÇÃO 2 mobile */
+  .s2-section { margin-top: 6vh; }
+  .s2-grid { grid-template-columns: 1fr; min-height: auto; row-gap: 4vh; }
+  .s2-left {
+    padding: 5vh 6vw;
+    min-height: auto;
+  }
+  .s2-main {
     position: static;
     width: 100%;
     margin-bottom: 3vh;
   }
-  .s3-stack {
+  .s2-stack {
     position: static;
     width: 100%;
     flex-direction: row;
     gap: 2vw;
     margin-bottom: 3vh;
   }
-  .s3-stack-img { flex: 1; }
-  .s3-caption {
+  .s2-stack-img { flex: 1; }
+  .s2-caption {
     position: static;
     max-width: 100%;
     margin-top: 2vh;
   }
-  .s3-right {
+  .s2-right {
     grid-template-columns: 1fr;
     padding: 5vh 6vw;
     row-gap: 3vh;
   }
-  .s3-col--quote { font-size: clamp(1.5rem, 6vw, 2.4rem); }
+  .s2-col--quote { font-size: clamp(1.5rem, 6vw, 2.4rem); }
 
   /* SEÇÃO 4 mobile */
   .s4-section { margin-top: 6vh; min-height: 80vh; }

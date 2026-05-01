@@ -47,11 +47,11 @@ function Profile({ person, onBack, onPrev, onNext }) {
     return () => { ro.disconnect(); window.removeEventListener('resize', fit); };
   }, [person.id]);
 
-  // Section 3: limita altura da coluna do quote para nunca ultrapassar as duas colunas laterais
+  // S2 (spread): limita altura da coluna do quote para nunca ultrapassar as duas colunas laterais
   useEffect(() => {
     const fitQuote = () => {
-      const quote = document.querySelector('.s3-col--quote');
-      const bodies = document.querySelectorAll('.s3-col--body');
+      const quote = document.querySelector('.s2-col--quote');
+      const bodies = document.querySelectorAll('.s2-col--body');
       if (!quote || bodies.length === 0) return;
       // reseta para medir altura natural das colunas laterais
       quote.style.maxHeight = 'none';
@@ -89,34 +89,34 @@ function Profile({ person, onBack, onPrev, onNext }) {
   while (fullText && fullText.split(/\s+/).length < 250) fullText += ' ' + baseText;
   fullText = fullText.split(/\s+/).slice(0, 250).join(' ');
 
-  // Conteúdo da seção 2
-  const s2Kicker = ed.category || 'Ensaio';
-  const s2Intro = (ed.coda || person.blurb || person.why || '').split('. ').slice(0, 2).join('. ').trim() || person.blurb || '';
-  const s2IntroFinal = s2Intro && !s2Intro.endsWith('.') ? s2Intro + '.' : s2Intro;
-  const s2Title = person.name.split(' ').slice(-1)[0];
+  // Conteúdo da seção 3 (ensaio editorial)
+  const s3Kicker = ed.category || 'Ensaio';
+  const s3Intro = (ed.coda || person.blurb || person.why || '').split('. ').slice(0, 2).join('. ').trim() || person.blurb || '';
+  const s3IntroFinal = s3Intro && !s3Intro.endsWith('.') ? s3Intro + '.' : s3Intro;
+  const s3Title = person.name.split(' ').slice(-1)[0];
 
-  // Conteúdo da seção 3
-  const s3Kicker = 'Moda';
-  const s3Caption = `1, 2, 3 & 4. ${person.name} em estúdio: "${(person.why || person.blurb || '').split('.')[0]}"`;
+  // Conteúdo da seção 2 (spread com pull quote)
+  const s2Kicker = 'Moda';
+  const s2Caption = `1, 2, 3 & 4. ${person.name} em estúdio: "${(person.why || person.blurb || '').split('.')[0]}"`;
   // Quote: combina pullQuote + why + blurb + coda e reduz para ~50% das palavras
-  const s3QuoteFull = [ed.pullQuote, person.why, person.blurb, ed.coda].filter(Boolean).join(' ');
-  const s3QuoteWords = s3QuoteFull.split(/\s+/);
-  const s3QuoteHalf = s3QuoteWords.slice(0, Math.ceil(s3QuoteWords.length / 2)).join(' ');
-  const s3Quote = `"${s3QuoteHalf}"`;
+  const s2QuoteFull = [ed.pullQuote, person.why, person.blurb, ed.coda].filter(Boolean).join(' ');
+  const s2QuoteWords = s2QuoteFull.split(/\s+/);
+  const s2QuoteHalf = s2QuoteWords.slice(0, Math.ceil(s2QuoteWords.length / 2)).join(' ');
+  const s2Quote = `"${s2QuoteHalf}"`;
 
   // Conteúdo da seção 4
   const s4Kicker = 'Moda';
   const s4Subtitle = `${ed.location ? ed.location + ', ' : ''}${person.role.toLowerCase()} em primeira pessoa.`;
   // Body text dividido para colunas laterais
-  const s3FullText = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean).join(' ');
-  let s3LongText = s3FullText;
-  while (s3LongText && s3LongText.length < 1500) s3LongText += ' ' + s3FullText;
-  const s3Mid = Math.floor(s3LongText.length / 2);
+  const s2FullText = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean).join(' ');
+  let s2LongText = s2FullText;
+  while (s2LongText && s2LongText.length < 1500) s2LongText += ' ' + s2FullText;
+  const s2Mid = Math.floor(s2LongText.length / 2);
   // Quebra na palavra mais próxima do meio
-  let s3SplitAt = s3LongText.lastIndexOf(' ', s3Mid);
-  if (s3SplitAt < 0) s3SplitAt = s3Mid;
-  const s3LeftText = s3LongText.slice(0, s3SplitAt).trim();
-  const s3RightText = s3LongText.slice(s3SplitAt).trim();
+  let s2SplitAt = s2LongText.lastIndexOf(' ', s2Mid);
+  if (s2SplitAt < 0) s2SplitAt = s2Mid;
+  const s2LeftText = s2LongText.slice(0, s2SplitAt).trim();
+  const s2RightText = s2LongText.slice(s2SplitAt).trim();
 
   return (
     <article className="profile">
@@ -168,83 +168,83 @@ function Profile({ person, onBack, onPrev, onNext }) {
       </section>
 
       {/* ════════════════════════════════════════
-          ORDEM: S3 aparece como segundo bloco (logo após S1)
-          SEÇÃO 3 — Spread editorial com pull quote
+          ORDEM: S2 aparece como segundo bloco (logo após S1)
+          SEÇÃO 2 — Spread editorial com pull quote
           esquerda: 3 colunas (texto · quote bold · texto) — invertido via grid order
           direita: kicker + imagem grande + pilha de 3 thumbs + legenda
-          ════════════════════════════════════════ */}
-      <section className="s3-section">
-        <div className="s3-grid">
-
-          <div className="s3-left">
-            <div className="s3-kicker">{s3Kicker}</div>
-
-            <div className="s3-main">
-              <img src={imgFor(`${person.id}-s3main`, 700, 940)} alt="" loading="lazy" />
-            </div>
-
-            <div className="s3-stack">
-              <div className="s3-stack-img">
-                <img src={imgFor(`${person.id}-s3a`, 400, 540)} alt="" loading="lazy" />
-              </div>
-              <div className="s3-stack-img">
-                <img src={imgFor(`${person.id}-s3b`, 400, 540)} alt="" loading="lazy" />
-              </div>
-              <div className="s3-stack-img">
-                <img src={imgFor(`${person.id}-s3c`, 400, 540)} alt="" loading="lazy" />
-              </div>
-            </div>
-
-            <div className="s3-caption">{s3Caption}</div>
-          </div>
-
-          <div className="s3-right">
-            <p className="s3-col s3-col--body">{s3LeftText}</p>
-            <p className="s3-col s3-col--quote">{s3Quote}</p>
-            <p className="s3-col s3-col--body">{s3RightText}</p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════
-          ORDEM: S2 aparece como terceiro bloco (após S3)
-          SEÇÃO 2 — Ensaio editorial
-          esquerda: kicker + intro + título centrado + 2 thumbs + créditos
-          direita: imagem full-bleed
           ════════════════════════════════════════ */}
       <section className="s2-section">
         <div className="s2-grid">
 
           <div className="s2-left">
             <div className="s2-kicker">{s2Kicker}</div>
-            <p className="s2-intro">{s2IntroFinal}</p>
 
-            <h2 className="s2-title">{s2Title}</h2>
+            <div className="s2-main">
+              <img src={imgFor(`${person.id}-s2main`, 700, 940)} alt="" loading="lazy" />
+            </div>
 
-            <div className="s2-thumbs">
-              <div className="s2-thumb">
-                <img src={imgFor(`${person.id}-s2a`, 600, 800)} alt="" loading="lazy" />
+            <div className="s2-stack">
+              <div className="s2-stack-img">
+                <img src={imgFor(`${person.id}-s2a`, 400, 540)} alt="" loading="lazy" />
               </div>
-              <div className="s2-thumb">
-                <img src={imgFor(`${person.id}-s2b`, 600, 800)} alt="" loading="lazy" />
+              <div className="s2-stack-img">
+                <img src={imgFor(`${person.id}-s2b`, 400, 540)} alt="" loading="lazy" />
+              </div>
+              <div className="s2-stack-img">
+                <img src={imgFor(`${person.id}-s2c`, 400, 540)} alt="" loading="lazy" />
               </div>
             </div>
 
-            <div className="s2-credits">
-              <div className="s2-credits-row">
-                <div className="s2-credits-label">por</div>
-                <div className="s2-credits-value">Editorial Hysk</div>
+            <div className="s2-caption">{s2Caption}</div>
+          </div>
+
+          <div className="s2-right">
+            <p className="s2-col s2-col--body">{s2LeftText}</p>
+            <p className="s2-col s2-col--quote">{s2Quote}</p>
+            <p className="s2-col s2-col--body">{s2RightText}</p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          ORDEM: S3 aparece como terceiro bloco (após S2)
+          SEÇÃO 3 — Ensaio editorial
+          esquerda: kicker + intro + título centrado + 2 thumbs + créditos
+          direita: imagem full-bleed
+          ════════════════════════════════════════ */}
+      <section className="s3-section">
+        <div className="s3-grid">
+
+          <div className="s3-left">
+            <div className="s3-kicker">{s3Kicker}</div>
+            <p className="s3-intro">{s3IntroFinal}</p>
+
+            <h2 className="s3-title">{s3Title}</h2>
+
+            <div className="s3-thumbs">
+              <div className="s3-thumb">
+                <img src={imgFor(`${person.id}-s3a`, 600, 800)} alt="" loading="lazy" />
               </div>
-              <div className="s2-credits-row">
-                <div className="s2-credits-label">fotos</div>
-                <div className="s2-credits-value">Pablo Saborido</div>
+              <div className="s3-thumb">
+                <img src={imgFor(`${person.id}-s3b`, 600, 800)} alt="" loading="lazy" />
+              </div>
+            </div>
+
+            <div className="s3-credits">
+              <div className="s3-credits-row">
+                <div className="s3-credits-label">por</div>
+                <div className="s3-credits-value">Editorial Hysk</div>
+              </div>
+              <div className="s3-credits-row">
+                <div className="s3-credits-label">fotos</div>
+                <div className="s3-credits-value">Pablo Saborido</div>
               </div>
             </div>
           </div>
 
-          <div className="s2-right">
-            <img src={imgFor(`${person.id}-s2hero`, 1400, 1700)} alt="" loading="lazy" />
+          <div className="s3-right">
+            <img src={imgFor(`${person.id}-s3hero`, 1400, 1700)} alt="" loading="lazy" />
           </div>
 
         </div>
