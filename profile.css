@@ -71,7 +71,6 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   column-gap: 0;
   align-items: stretch;
-  min-height: calc(100vh - 14vh);
 }
 
 /* ── METADE ESQUERDA 50% — imagem com moldura branca ── */
@@ -163,15 +162,12 @@
   font-weight: 500;
 }
 
-/* Zona 3 — 3 colunas, fluxo contínuo, ocupa altura restante, bottoms alinham com a imagem */
+/* Zona 3 — 3 colunas balanceadas, fluxo contínuo, bottoms alinham com a imagem */
 .ed-columns {
-  flex: 1;                /* preenche toda a altura restante do .ed-right */
   width: 100%;
-  min-height: 0;          /* permite shrink em flex */
   column-count: 3;
   column-gap: 1.6vw;
-  column-fill: auto;      /* enche cada coluna até o final antes de passar pra próxima */
-  overflow: hidden;
+  column-fill: balance;   /* distribui o texto igualmente nas 3 colunas */
 }
 
 .ed-columns p {
