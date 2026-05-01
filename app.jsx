@@ -1,7 +1,7 @@
 const { useState, useEffect } = React;
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "headline": "An Index of Taste",
+  "headline": "INDEX of TASTE",
   "background": "#F4F0E8",
   "spacing": 132,
   "figureScale": 0.33,
@@ -12,16 +12,23 @@ const HEADLINE_OPTIONS = [
   "Underseen",
   "People You Should Know",
   "A Better Reference Set",
-  "An Index of Taste",
+  "INDEX of TASTE",
   "Worth Your Attention"
 ];
+
+// Rende o headline com a palavra "of" em itálico (case-insensitive)
+function renderHeadline(text) {
+  return text.split(/(\bof\b)/i).map((part, i) =>
+    /^of$/i.test(part) ? <em key={i}>{part}</em> : part
+  );
+}
 
 function IndexView({ tweaks, onSelect }) {
   return (
     <div className="page" style={{ background: tweaks.background }}>
       <header className="masthead">
         <div className="eyebrow">Vol. 04 — Spring 2026</div>
-        <h1 className="headline">{tweaks.headline}</h1>
+        <h1 className="headline">{renderHeadline(tweaks.headline)}</h1>
       </header>
 
       <main
