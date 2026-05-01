@@ -73,7 +73,9 @@ function Profile({ person, onBack, onPrev, onNext }) {
   // Conteúdo da seção 3
   const s3Kicker = 'Moda';
   const s3Caption = `1, 2, 3 & 4. ${person.name} em estúdio: "${(person.why || person.blurb || '').split('.')[0]}"`;
-  const s3Quote = `"${ed.pullQuote || person.why || person.blurb || ''}"`;
+  // Quote mais longa: combina pullQuote + why + blurb para preencher melhor a coluna do meio
+  const s3QuoteText = [ed.pullQuote, person.why, person.blurb, ed.coda].filter(Boolean).join(' ');
+  const s3Quote = `"${s3QuoteText}"`;
   // Body text dividido para colunas laterais
   const s3FullText = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean).join(' ');
   let s3LongText = s3FullText;

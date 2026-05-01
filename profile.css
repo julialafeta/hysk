@@ -365,7 +365,7 @@
 
 .s3-left {
   position: relative;
-  padding: 4.5vh 3vw 4.5vh 3.5vw;
+  padding: 4.5vh 3vw 4.5vh 2vw;   /* left = 2vw matching sections 1 & 2 */
   box-sizing: border-box;
 }
 
@@ -379,7 +379,7 @@
 /* Imagem grande dominante na esquerda */
 .s3-main {
   position: absolute;
-  left: 3.5vw;
+  left: 2vw;
   top: 9vh;
   width: 54%;
   aspect-ratio: 3 / 4;
@@ -394,11 +394,12 @@
   filter: contrast(1.03) saturate(0.92);
 }
 
-/* Coluna de 3 imagens menores empilhadas, alinhadas com o ritmo do texto à direita */
+/* Coluna de 3 imagens — alinha com o topo e a base da área das 3 colunas à direita */
 .s3-stack {
   position: absolute;
   right: 3vw;
-  top: 9vh;
+  top: 4.5vh;                /* mesmo padding-top de .s3-right */
+  bottom: 4.5vh;             /* mesmo padding-bottom de .s3-right */
   width: 27%;
   display: flex;
   flex-direction: column;
@@ -406,8 +407,8 @@
 }
 
 .s3-stack-img {
+  flex: 1;                    /* divide igualmente a altura disponível */
   width: 100%;
-  aspect-ratio: 3 / 4;
   overflow: hidden;
 }
 
@@ -419,10 +420,10 @@
   filter: contrast(1.03) saturate(0.92);
 }
 
-/* Legenda no canto inferior esquerdo */
+/* Legenda alinhada com a base do último thumb (mesmo bottom: 4.5vh) */
 .s3-caption {
   position: absolute;
-  left: 3.5vw;
+  left: 2vw;
   bottom: 4.5vh;
   font-size: 0.78rem;
   line-height: 1.35;
