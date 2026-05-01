@@ -61,7 +61,7 @@ function App() {
   const activeId = route.view === 'profile' ? route.id : null;
 
   useEffect(() => {
-    document.body.style.background = activeId ? "#F6F4F0" : tweaks.background;
+    document.body.style.background = activeId ? "#FAFAF7" : tweaks.background;
   }, [tweaks.background, activeId]);
 
   const activeIdx = activeId ? PEOPLE.findIndex(p => p.id === activeId) : -1;
