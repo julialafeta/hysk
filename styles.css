@@ -102,7 +102,13 @@ html, body {
   height: 105px;
   padding: 5px;                         /* perforated colored band */
   box-sizing: border-box;
-  background: #5C2A33;                  /* deep wine — vintage philately accent */
+  /* Gold gradient with XP-Luna-style shine: bright top → mid → darker bottom */
+  background: linear-gradient(180deg,
+    #E5C24C 0%,
+    #D4A933 22%,
+    #C19420 50%,
+    #A07A14 78%,
+    #82640F 100%);
   overflow: hidden;
   opacity: 0;
   transition: opacity 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -122,14 +128,14 @@ html, body {
   mask-repeat: no-repeat;
 }
 
-/* Inner area: cream paper with thin gold accent line (vintage philately detail) */
+/* Inner area: cream paper with thin deep accent line (vintage philately detail) */
 .figure-preview__frame {
   width: 100%;
   height: 100%;
   background: #F4EFE3;                  /* soft cream — looks aged/premium */
   overflow: hidden;
   box-sizing: border-box;
-  box-shadow: inset 0 0 0 1px rgba(184, 134, 11, 0.85);  /* gold accent line just inside the wine band */
+  box-shadow: inset 0 0 0 1px rgba(82, 60, 12, 0.9);    /* deep bronze accent line — contrasts with gold band */
 }
 
 .figure-preview__inner {
