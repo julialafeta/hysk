@@ -83,6 +83,10 @@ function Profile({ person, onBack, onPrev, onNext }) {
   const kickerText = (person.role || ed.category || 'Perfil');
   const subtitle = ed.intro || person.blurb || '';
 
+  // Indicador de posição: nº do perfil atual / total
+  const profileIdx = PEOPLE.findIndex(p => p.id === person.id);
+  const profileLabel = String(profileIdx + 1).padStart(2, '0') + ' / ' + String(PEOPLE.length).padStart(2, '0');
+
   // Body text — limita em ~250 palavras (somando as 3 colunas)
   const baseText = [ed.intro, ed.coda, person.blurb, person.why].filter(Boolean).join(' ');
   let fullText = baseText;
@@ -123,7 +127,7 @@ function Profile({ person, onBack, onPrev, onNext }) {
 
       <nav className="ed-nav">
         <button className="ed-nav__back" onClick={onBack}>← Índice</button>
-        <span className="ed-nav__wordmark">Hysk · Vol. 04</span>
+        <span className="ed-nav__wordmark">Hysk · Vol. 04 · {profileLabel}</span>
         <div className="ed-nav__arrows">
           <button onClick={onPrev}>←</button>
           <button onClick={onNext}>→</button>
@@ -278,12 +282,6 @@ function Profile({ person, onBack, onPrev, onNext }) {
           </div>
         </div>
       </section>
-
-      <footer className="ed-footer">
-        <button className="ed-footer__prev" onClick={onPrev}>← Anterior</button>
-        <button className="ed-footer__back" onClick={onBack}>Voltar ao índice</button>
-        <button className="ed-footer__next" onClick={onNext}>Próximo →</button>
-      </footer>
 
     </article>
   );
