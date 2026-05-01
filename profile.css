@@ -393,7 +393,7 @@
 .s2-main {
   position: absolute;
   left: 2vw;
-  top: 9vh;
+  top: 4.5vh;             /* alinha com o topo do primeiro thumb da stack */
   width: 54%;
   aspect-ratio: 3 / 4;
   overflow: hidden;

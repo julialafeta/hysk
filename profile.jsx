@@ -181,8 +181,6 @@ function Profile({ person, onBack, onPrev, onNext }) {
         <div className="s2-grid">
 
           <div className="s2-left">
-            <div className="s2-kicker">{s2Kicker}</div>
-
             <div className="s2-main">
               <img src={imgFor(`${person.id}-s2main`, 700, 940)} alt="" loading="lazy" />
             </div>
