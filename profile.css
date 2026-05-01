@@ -219,12 +219,11 @@
    ══════════════════════════════════════════════════════ */
 
 .s2-section {
-  display: none;               /* SEÇÃO 2 OCULTA — remova esta linha para reaparecer */
   width: 100%;
   min-height: 100vh;
   background: #FAFAF7;
   padding: 0;
-  margin-top: 10vh;            /* respiro editorial entre seção 1 e seção 2 */
+  margin-top: 10vh;            /* respiro editorial entre seções */
   box-sizing: border-box;
 }
 

@@ -168,6 +168,47 @@ function Profile({ person, onBack, onPrev, onNext }) {
       </section>
 
       {/* ════════════════════════════════════════
+          ORDEM: S3 aparece como segundo bloco (logo após S1)
+          SEÇÃO 3 — Spread editorial com pull quote
+          esquerda: 3 colunas (texto · quote bold · texto) — invertido via grid order
+          direita: kicker + imagem grande + pilha de 3 thumbs + legenda
+          ════════════════════════════════════════ */}
+      <section className="s3-section">
+        <div className="s3-grid">
+
+          <div className="s3-left">
+            <div className="s3-kicker">{s3Kicker}</div>
+
+            <div className="s3-main">
+              <img src={imgFor(`${person.id}-s3main`, 700, 940)} alt="" loading="lazy" />
+            </div>
+
+            <div className="s3-stack">
+              <div className="s3-stack-img">
+                <img src={imgFor(`${person.id}-s3a`, 400, 540)} alt="" loading="lazy" />
+              </div>
+              <div className="s3-stack-img">
+                <img src={imgFor(`${person.id}-s3b`, 400, 540)} alt="" loading="lazy" />
+              </div>
+              <div className="s3-stack-img">
+                <img src={imgFor(`${person.id}-s3c`, 400, 540)} alt="" loading="lazy" />
+              </div>
+            </div>
+
+            <div className="s3-caption">{s3Caption}</div>
+          </div>
+
+          <div className="s3-right">
+            <p className="s3-col s3-col--body">{s3LeftText}</p>
+            <p className="s3-col s3-col--quote">{s3Quote}</p>
+            <p className="s3-col s3-col--body">{s3RightText}</p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          ORDEM: S2 aparece como terceiro bloco (após S3)
           SEÇÃO 2 — Ensaio editorial
           esquerda: kicker + intro + título centrado + 2 thumbs + créditos
           direita: imagem full-bleed
@@ -204,45 +245,6 @@ function Profile({ person, onBack, onPrev, onNext }) {
 
           <div className="s2-right">
             <img src={imgFor(`${person.id}-s2hero`, 1400, 1700)} alt="" loading="lazy" />
-          </div>
-
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════
-          SEÇÃO 3 — Spread editorial com pull quote
-          esquerda: kicker + imagem grande + pilha de 3 thumbs + legenda
-          direita: 3 colunas (texto · quote bold · texto)
-          ════════════════════════════════════════ */}
-      <section className="s3-section">
-        <div className="s3-grid">
-
-          <div className="s3-left">
-            <div className="s3-kicker">{s3Kicker}</div>
-
-            <div className="s3-main">
-              <img src={imgFor(`${person.id}-s3main`, 700, 940)} alt="" loading="lazy" />
-            </div>
-
-            <div className="s3-stack">
-              <div className="s3-stack-img">
-                <img src={imgFor(`${person.id}-s3a`, 400, 540)} alt="" loading="lazy" />
-              </div>
-              <div className="s3-stack-img">
-                <img src={imgFor(`${person.id}-s3b`, 400, 540)} alt="" loading="lazy" />
-              </div>
-              <div className="s3-stack-img">
-                <img src={imgFor(`${person.id}-s3c`, 400, 540)} alt="" loading="lazy" />
-              </div>
-            </div>
-
-            <div className="s3-caption">{s3Caption}</div>
-          </div>
-
-          <div className="s3-right">
-            <p className="s3-col s3-col--body">{s3LeftText}</p>
-            <p className="s3-col s3-col--quote">{s3Quote}</p>
-            <p className="s3-col s3-col--body">{s3RightText}</p>
           </div>
 
         </div>
