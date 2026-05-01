@@ -60,8 +60,7 @@
 
 .ed-section {
   width: 100%;
-  min-height: 100vh;
-  padding: 7vh 0;          /* sem padding horizontal: cada coluna do grid = 50vw exatos */
+  padding: 0;              /* sem padding na seção: moldura branca vem só do .ed-left, balanceada nos 4 lados */
   box-sizing: border-box;
 }
 
@@ -98,7 +97,7 @@
 /* ── METADE DIREITA 50% — composição editorial vertical ── */
 
 .ed-right {
-  padding: 4vh 4.5vw 2vw 3vw;   /* bottom = 2vw para alinhar com base da imagem */
+  padding: 5vh 4.5vw 2vw 3vw;   /* top compensa remoção do padding da seção; bottom = 2vw alinha com base da imagem */
   display: flex;
   flex-direction: column;
 }
