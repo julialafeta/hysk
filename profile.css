@@ -455,13 +455,14 @@
   text-align: justify;
 }
 
-/* Coluna do meio — pull quote dominante */
+/* Coluna do meio — pull quote dominante (max-height aplicado via JS para nunca ultrapassar as laterais) */
 .s3-col--quote {
   font-size: clamp(2rem, 2.4vw, 3rem);
   line-height: 1.18;
   font-weight: 800;
   text-align: justify;
   letter-spacing: -0.015em;
+  overflow: hidden;
 }
 
 /* ══════════════════════════════════════════════════════

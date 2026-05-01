@@ -45,6 +45,28 @@ function Profile({ person, onBack, onPrev, onNext }) {
     return () => { ro.disconnect(); window.removeEventListener('resize', fit); };
   }, [person.id]);
 
+  // Section 3: limita altura da coluna do quote para nunca ultrapassar as duas colunas laterais
+  useEffect(() => {
+    const fitQuote = () => {
+      const quote = document.querySelector('.s3-col--quote');
+      const bodies = document.querySelectorAll('.s3-col--body');
+      if (!quote || bodies.length === 0) return;
+      // reseta para medir altura natural das colunas laterais
+      quote.style.maxHeight = 'none';
+      const maxBodyHeight = Math.max(...Array.from(bodies).map(b => b.offsetHeight));
+      if (maxBodyHeight > 0) {
+        quote.style.maxHeight = maxBodyHeight + 'px';
+      }
+    };
+    fitQuote();
+    requestAnimationFrame(fitQuote);
+    setTimeout(fitQuote, 100);
+    setTimeout(fitQuote, 500);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitQuote);
+    window.addEventListener('resize', fitQuote);
+    return () => window.removeEventListener('resize', fitQuote);
+  }, [person.id]);
+
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') onBack();

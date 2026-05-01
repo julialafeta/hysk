@@ -16,10 +16,10 @@ const HEADLINE_OPTIONS = [
   "Worth Your Attention"
 ];
 
-// Rende o headline com a palavra "of" em itálico (case-insensitive)
+// Rende o headline com a palavra "of" em itálico (case-insensitive) e kerning extra
 function renderHeadline(text) {
   return text.split(/(\bof\b)/i).map((part, i) =>
-    /^of$/i.test(part) ? <em key={i}>{part}</em> : part
+    /^of$/i.test(part) ? <em key={i} style={{ padding: '0 0.12em' }}>{part}</em> : part
   );
 }
 
