@@ -60,12 +60,16 @@
 
 .ed-section {
   width: 100%;
-  padding: 0;              /* sem padding na seção: moldura branca vem só do .ed-left, balanceada nos 4 lados */
+  min-height: 100vh;       /* seção ocupa pelo menos a viewport inteira */
+  padding: 0;              /* sem padding: moldura branca vem só do .ed-left, balanceada nos 4 lados */
   box-sizing: border-box;
+  display: flex;           /* permite o grid crescer para preencher a seção */
+  flex-direction: column;
 }
 
-/* Grid 50/50 ESTRITO — minmax(0, 1fr) trava as colunas para evitar que conteúdo com nowrap expanda a coluna além de 50% */
+/* Grid 50/50 ESTRITO — minmax(0, 1fr) trava as colunas; flex: 1 faz preencher a seção */
 .ed-grid {
+  flex: 1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   column-gap: 0;
@@ -161,12 +165,15 @@
   font-weight: 500;
 }
 
-/* Zona 3 — 3 colunas balanceadas, fluxo contínuo, bottoms alinham com a imagem */
+/* Zona 3 — 3 colunas que preenchem toda a altura disponível até a base da imagem */
 .ed-columns {
+  flex: 1;                /* preenche a altura restante do .ed-right */
+  min-height: 0;          /* permite shrink em flex */
   width: 100%;
   column-count: 3;
   column-gap: 1.6vw;
-  column-fill: balance;   /* distribui o texto igualmente nas 3 colunas */
+  column-fill: auto;      /* enche cada coluna até a base antes de passar para a próxima */
+  overflow: hidden;       /* corta excesso de texto se houver */
 }
 
 .ed-columns p {
