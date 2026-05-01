@@ -60,14 +60,14 @@
 
 .ed-section {
   width: 100%;
-  min-height: 100vh;       /* seção ocupa pelo menos a viewport inteira */
-  padding: 0;              /* sem padding: moldura branca vem só do .ed-left, balanceada nos 4 lados */
+  min-height: 100vh;
+  padding: 0;
   box-sizing: border-box;
-  display: flex;           /* permite o grid crescer para preencher a seção */
+  display: flex;
   flex-direction: column;
 }
 
-/* Grid 50/50 ESTRITO — minmax(0, 1fr) trava as colunas; flex: 1 faz preencher a seção */
+/* Grid 50/50 ESTRITO — flex: 1 faz preencher a seção */
 .ed-grid {
   flex: 1;
   display: grid;
