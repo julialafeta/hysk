@@ -122,19 +122,18 @@ html, body {
   mask-repeat: no-repeat;
 }
 
-/* Inner area: aged-paper yellow with Win98-style sunken bevel (kept unchanged) */
+/* Inner area: aged-paper with gold rectangular border (stamp-style, like the Danmark reference) */
 .figure-preview__frame {
   width: 100%;
   height: 100%;
   background: #EFE0A8;                  /* aged yellowish paper */
   overflow: hidden;
   box-sizing: border-box;
-  /* Two-pixel Win98 inset bevel — gives the cream area a recessed-window look */
+  border: 1px solid #B8860B;            /* rectangular gold frame just inside the perforations */
+  /* Subtle Win98 bevel kept inside the gold border */
   box-shadow:
-    inset 1px 1px 0 #4A3712,            /* outer dark line (top + left) */
-    inset 2px 2px 0 #8A6B1F,            /* inner mid-gold line */
-    inset -1px -1px 0 #FFF7E2,          /* outer light line (right + bottom) */
-    inset -2px -2px 0 #E8C97A;          /* inner soft-gold light */
+    inset 0 0 0 1px #8A6B1F,
+    inset -2px -2px 0 #E8C97A;
 }
 
 .figure-preview__inner {
