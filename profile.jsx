@@ -216,6 +216,7 @@ function ProfileLayout1({ person, onBack, onPrev, onNext, preview }) {
           left: kicker + intro + centered title + 2 thumbs + credits
           right: full-bleed image
           ════════════════════════════════════════ */}
+      {!preview && (
       <section className="s3-section">
         <div className="s3-grid">
 
@@ -252,6 +253,7 @@ function ProfileLayout1({ person, onBack, onPrev, onNext, preview }) {
 
         </div>
       </section>
+      )}
 
       {/* ════════════════════════════════════════
           SECTION 4 – Final editorial spread
@@ -259,6 +261,7 @@ function ProfileLayout1({ person, onBack, onPrev, onNext, preview }) {
           kicker in the top-left corner (aligned with s2/s3)
           text overlay in the right half: title + subtitle + credits
           ════════════════════════════════════════ */}
+      {!preview && (
       <section className="s4-section">
         <div className="s4-photo">
           <img src={imgFor(`${person.id}-s4hero`, 1800, 1100)} alt="" loading="lazy" />
@@ -281,6 +284,7 @@ function ProfileLayout1({ person, onBack, onPrev, onNext, preview }) {
           </div>
         </div>
       </section>
+      )}
 
     </article>
   );
