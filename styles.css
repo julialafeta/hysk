@@ -148,8 +148,8 @@ html, body {
 
 .figure-preview__titlebar {
   height: 14px;
-  background: #808080;                  /* Win98 inactive titlebar grey */
-  color: #C0C0C0;                       /* dimmed light-grey text */
+  background: #DFDFDF;                  /* light Win98 grey */
+  color: #707070;                       /* mid-grey text */
   display: flex;
   align-items: center;
   justify-content: space-between;
