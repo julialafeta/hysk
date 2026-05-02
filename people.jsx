@@ -523,6 +523,13 @@ function FigurePreview({ person }) {
         <div className="figure-preview__inner">
           <Layout person={person} onBack={noop} onPrev={noop} onNext={noop} preview={true} />
         </div>
+        <div className="figure-preview__scrollbar">
+          <div className="figure-preview__sb-arrow">▲</div>
+          <div className="figure-preview__sb-track">
+            <div className="figure-preview__sb-thumb"></div>
+          </div>
+          <div className="figure-preview__sb-arrow">▼</div>
+        </div>
       </div>
     </div>
   );

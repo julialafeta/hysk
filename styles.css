@@ -128,10 +128,10 @@ html, body {
   bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  width: 86px;
+  width: 64px;
   box-sizing: border-box;
   background: #C0C0C0;                  /* Win98 desktop grey */
-  padding: 3px;
+  padding: 2px;
   /* Classic Win98 raised bevel: light top/left, dark bottom/right, two-step */
   box-shadow:
     inset 1px 1px 0 #FFFFFF,
@@ -147,14 +147,14 @@ html, body {
 }
 
 .figure-preview__titlebar {
-  height: 14px;
+  height: 11px;
   background: #DFDFDF;                  /* light Win98 grey */
   color: #707070;                       /* mid-grey text */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 3px;
-  font-size: 9px;
+  padding: 0 2px;
+  font-size: 7px;
   font-weight: bold;
   letter-spacing: 0.02em;
 }
@@ -167,31 +167,82 @@ html, body {
 }
 
 .figure-preview__controls {
-  font-size: 8px;
+  font-size: 6px;
   letter-spacing: 1px;
   flex-shrink: 0;
-  margin-left: 4px;
+  margin-left: 3px;
 }
 
 .figure-preview__frame {
   width: 100%;
-  height: 110px;                        /* sized to fit s1 + s2 only */
+  height: 82px;                         /* 3:4 of previous 110px */
   background: #FFFFFF;                  /* Win98 content area: white */
   overflow: hidden;
   box-sizing: border-box;
+  position: relative;
   box-shadow:
     inset 1px 1px 0 #808080,
     inset -1px -1px 0 #FFFFFF,
     inset 2px 2px 0 #000000,
     inset -2px -2px 0 #DFDFDF;
-  margin-top: 2px;
+  margin-top: 1px;
 }
 
 .figure-preview__inner {
   width: 1440px;                        /* simulated desktop width */
-  transform: scale(0.0528);             /* 76 / 1440 ≈ 0.0528 to fit slim inner area */
+  transform: scale(0.0396);             /* 0.0528 * 0.75 to preserve 3:4 ratio */
   transform-origin: top left;
   pointer-events: none;
+}
+
+/* Win98 vertical scrollbar (visual only) */
+.figure-preview__scrollbar {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  width: 8px;
+  background: #C0C0C0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 1px solid #808080;
+}
+
+.figure-preview__sb-arrow {
+  width: 8px;
+  height: 8px;
+  background: #C0C0C0;
+  color: #000;
+  font-size: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow:
+    inset 1px 1px 0 #FFFFFF,
+    inset -1px -1px 0 #808080;
+  flex-shrink: 0;
+}
+
+.figure-preview__sb-track {
+  flex: 1;
+  width: 100%;
+  background:
+    repeating-conic-gradient(#C0C0C0 0% 25%, #DFDFDF 0% 50%) 0 0 / 2px 2px;
+  position: relative;
+}
+
+.figure-preview__sb-thumb {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: #C0C0C0;
+  box-shadow:
+    inset 1px 1px 0 #FFFFFF,
+    inset -1px -1px 0 #808080;
 }
 
 .figure-caption {
