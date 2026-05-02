@@ -131,7 +131,7 @@ html, body {
    inside a fixed 1440px-wide container, scaled down via transform.
    ────────────────────────────────────────────────────────── */
 
-/* Win98 popup-window preview (all grey, inactive-style) */
+/* Win98-inspired popup preview (softened contrast) */
 .figure-preview {
   position: absolute;
   bottom: calc(100% + 8px);
@@ -139,15 +139,13 @@ html, body {
   transform: translateX(-50%);
   width: 64px;
   box-sizing: border-box;
-  background: #C0C0C0;                  /* Win98 desktop grey */
+  background: #D4D0C8;                  /* warmer Win98 grey */
   padding: 2px;
-  /* Classic Win98 raised bevel: light top/left, dark bottom/right, two-step */
+  /* Soft single-layer bevel + light drop shadow */
   box-shadow:
-    inset 1px 1px 0 #FFFFFF,
-    inset -1px -1px 0 #000000,
-    inset 2px 2px 0 #DFDFDF,
-    inset -2px -2px 0 #808080,
-    2px 2px 0 rgba(0, 0, 0, 0.25);
+    inset 1px 1px 0 #EFEAE2,
+    inset -1px -1px 0 #ADA89E,
+    1px 2px 4px rgba(0, 0, 0, 0.12);
   opacity: 0;
   transition: opacity 0.18s ease;
   pointer-events: none;
@@ -157,8 +155,8 @@ html, body {
 
 .figure-preview__titlebar {
   height: 11px;
-  background: #DFDFDF;                  /* light Win98 grey */
-  color: #707070;                       /* mid-grey text */
+  background: #C8C2B6;                  /* close to body grey, low contrast */
+  color: #7A756B;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -180,65 +178,62 @@ html, body {
   letter-spacing: 1px;
   flex-shrink: 0;
   margin-left: 3px;
+  opacity: 0.7;
 }
 
 .figure-preview__frame {
   width: 100%;
-  height: 82px;                         /* 3:4 of previous 110px */
-  background: #FFFFFF;                  /* Win98 content area: white */
+  height: 82px;
+  background: #FFFFFF;
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  box-shadow:
-    inset 1px 1px 0 #808080,
-    inset -1px -1px 0 #FFFFFF,
-    inset 2px 2px 0 #000000,
-    inset -2px -2px 0 #DFDFDF;
+  /* Very subtle inset border instead of strong Win98 sunken bevel */
+  box-shadow: inset 0 0 0 1px #B8B2A6;
   margin-top: 1px;
 }
 
 .figure-preview__inner {
-  width: 1440px;                        /* simulated desktop width */
-  transform: scale(0.0396);             /* 0.0528 * 0.75 to preserve 3:4 ratio */
+  width: 1440px;
+  transform: scale(0.0396);
   transform-origin: top left;
   pointer-events: none;
 }
 
-/* Win98 vertical scrollbar (visual only) */
+/* Win98 vertical scrollbar (softened) */
 .figure-preview__scrollbar {
   position: absolute;
-  top: 2px;
-  right: 2px;
-  bottom: 2px;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
   width: 5px;
-  background: #C0C0C0;
+  background: #D4D0C8;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-left: 1px solid #808080;
+  border-left: 1px solid #B8B2A6;
 }
 
 .figure-preview__sb-arrow {
   width: 5px;
   height: 5px;
-  background: #C0C0C0;
-  color: #000;
+  background: #D4D0C8;
+  color: #6B6660;
   font-size: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
   box-shadow:
-    inset 1px 1px 0 #FFFFFF,
-    inset -1px -1px 0 #808080;
+    inset 1px 1px 0 #EFEAE2,
+    inset -1px -1px 0 #ADA89E;
   flex-shrink: 0;
 }
 
 .figure-preview__sb-track {
   flex: 1;
   width: 100%;
-  background:
-    repeating-conic-gradient(#C0C0C0 0% 25%, #DFDFDF 0% 50%) 0 0 / 2px 2px;
+  background: #DCD6CB;
   position: relative;
 }
 
@@ -248,10 +243,10 @@ html, body {
   left: 0;
   right: 0;
   height: 12px;
-  background: #C0C0C0;
+  background: #D4D0C8;
   box-shadow:
-    inset 1px 1px 0 #FFFFFF,
-    inset -1px -1px 0 #808080;
+    inset 1px 1px 0 #EFEAE2,
+    inset -1px -1px 0 #ADA89E;
 }
 
 .figure-caption {
