@@ -65,7 +65,7 @@ html, body {
 
 .headline {
   font-family: 'Erotique Alternate', 'DM Serif Display', serif;
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(56px, 8.4vw, 132px);
   line-height: 0.95;
   letter-spacing: -0.02em;
