@@ -32,7 +32,7 @@ function IndexView({ tweaks, onSelect }) {
       <header className="masthead">
         <div className="eyebrow">Vol. 01 – Spring/Summer 2026</div>
         <h1 className="headline">
-          <img src="index-of-taste.svg" alt={tweaks.headline} className="headline-svg" />
+          <img src="index-of-taste.svg?v=2" alt={tweaks.headline} className="headline-svg" />
         </h1>
       </header>
 
