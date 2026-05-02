@@ -70,6 +70,15 @@ html, body {
   line-height: 0.95;
   letter-spacing: -0.02em;
   color: #1a1a1a;
+  margin: 0;
+}
+
+.headline-svg {
+  display: block;
+  width: clamp(420px, 78vw, 1320px);
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
 }
 
 /* Gallery row */

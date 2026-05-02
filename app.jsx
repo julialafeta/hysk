@@ -31,7 +31,9 @@ function IndexView({ tweaks, onSelect }) {
     <div className="page" style={{ background: tweaks.background }}>
       <header className="masthead">
         <div className="eyebrow">Vol. 01 – Spring/Summer 2026</div>
-        <h1 className="headline">{renderHeadline(tweaks.headline)}</h1>
+        <h1 className="headline">
+          <img src="index-of-taste.svg" alt={tweaks.headline} className="headline-svg" />
+        </h1>
       </header>
 
       <main
