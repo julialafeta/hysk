@@ -75,7 +75,7 @@ html, body {
 
 .headline-svg {
   display: block;
-  width: clamp(340px, 62vw, 1050px);
+  width: clamp(260px, 47vw, 790px);
   max-width: 100%;
   height: auto;
   margin: 0 auto;
