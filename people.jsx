@@ -515,11 +515,13 @@ function FigurePreview({ person }) {
   if (!Layout) return null;
   return (
     <div className="figure-preview" aria-hidden="true">
-      <div className="figure-preview__stamp">
-        <div className="figure-preview__frame">
-          <div className="figure-preview__inner">
-            <Layout person={person} onBack={noop} onPrev={noop} onNext={noop} preview={true} />
-          </div>
+      <div className="figure-preview__titlebar">
+        <span className="figure-preview__title">{person.name}</span>
+        <span className="figure-preview__controls">_ □ ×</span>
+      </div>
+      <div className="figure-preview__frame">
+        <div className="figure-preview__inner">
+          <Layout person={person} onBack={noop} onPrev={noop} onNext={noop} preview={true} />
         </div>
       </div>
     </div>
