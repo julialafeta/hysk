@@ -32,7 +32,7 @@
   text-transform: uppercase;
   color: #1a1a1a;
   opacity: 0.45;
-  cursor: url('cursor-hand-tilt.png?v=1') 5 8, pointer;
+  cursor: url('cursor-hand-tilt.png?v=2') 5 8, pointer;
 }
 .ed-nav__back:hover { opacity: 1; }
 
@@ -50,7 +50,7 @@
   font-size: 13px;
   color: #1a1a1a;
   opacity: 0.3;
-  cursor: url('cursor-hand-tilt.png?v=1') 5 8, pointer;
+  cursor: url('cursor-hand-tilt.png?v=2') 5 8, pointer;
 }
 .ed-nav__arrows button:hover { opacity: 1; }
 
@@ -198,7 +198,7 @@
   text-transform: uppercase;
   color: #1a1a1a;
   opacity: 0.4;
-  cursor: url('cursor-hand-tilt.png?v=1') 5 8, pointer;
+  cursor: url('cursor-hand-tilt.png?v=2') 5 8, pointer;
 }
 .ed-footer button:hover { opacity: 1; }
 

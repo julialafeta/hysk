@@ -95,7 +95,7 @@ html, body {
   background: transparent;
   border: 0;
   padding: 0;
-  cursor: url('cursor-hand-tilt.png?v=1') 5 8, pointer;   /* Win98-style pixelated hand */
+  cursor: url('cursor-hand-tilt.png?v=2') 5 8, pointer;   /* Win98-style pixelated hand */
   display: inline-flex;
   align-items: flex-end;
   justify-content: center;
